@@ -1,7 +1,11 @@
 import * as React from 'react';
 
-import Header from '../molecules/headers/Header';
+import MenuHeader from '../molecules/headers/MenuHeader';
+import TopHeader from '../molecules/headers/TopHeader';
 
 export default () => (
-  <Header/>
+  <>
+    <TopHeader/>
+    <MenuHeader/>
+  </>
 );
