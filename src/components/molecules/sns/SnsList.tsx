@@ -31,7 +31,6 @@ export default () => (
 const Container = styledComponents.ul`
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
 `;
 
 const Item = styledComponents.li`

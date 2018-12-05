@@ -5,7 +5,7 @@ import profileJpg from '../../../statics/images/profile.jpg';
 import SnsList from '../../molecules/sns/SnsList';
 
 export default () => (
-  <>
+  <Wrapper>
     <Container>
       <Title>Profile</Title>
       <Content>
@@ -28,13 +28,17 @@ export default () => (
       <Image />
     </Container>
     <SnsList/>
-  </>
+  </Wrapper>
 );
+
+const Wrapper = styledComponents.div`
+  margin: 4rem 2rem;
+`;
 
 const Container = styledComponents.div`
   display: flex;
-  margin: 3rem 2rem;
   justify-content: center;
+  margin-bottom: 3rem;
 `;
 
 const Title = styledComponents.h2`
