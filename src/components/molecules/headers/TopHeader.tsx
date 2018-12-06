@@ -47,14 +47,27 @@ const Content = styledComponents.div`
 `;
 
 const Title = styledComponents.h1`
-  font-size: 4rem;
+  font-size: 8vw;
+
+  @media (min-width: 1024px) {
+    font-size: 6rem;
+  }
 `;
 
 const Description = styledComponents.div`
-  margin-top: 2rem;
-  font-size: 2rem;
+  margin-top: 3vw;
+
+  @media (min-width: 1024px) {
+    margin-top: 3rem;
+  }
 `;
 
 const Line = styledComponents.p`
-  line-height: 2.5rem;
+  line-height: 5vw;
+  font-size: 4vw;
+
+  @media (min-width: 1024px) {
+    line-height: 3.5rem;
+    font-size: 3rem;
+  }
 `;
