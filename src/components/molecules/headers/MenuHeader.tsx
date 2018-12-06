@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
 import styledComponents from 'styled-components';
 
 import Menu from '../../atoms/menus/Menu';
 
 export default () => (
   <Container>
-    <Title><Link to='/'>Mori Atsushi</Link></Title>
+    <Title>Mori Atsushi</Title>
     <MenuWrapper><Menu /></MenuWrapper>
   </Container>
 );
