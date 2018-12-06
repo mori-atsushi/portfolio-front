@@ -1,13 +1,14 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 import styledComponents from 'styled-components';
 
 export default () => (
   <Container>
-    <Item>About</Item>
-    <Item>Works</Item>
-    <Item>Photos</Item>
-    <Item>Blog</Item>
-    <Item>Contact</Item>
+    <Item><Link to='/'>Top</Link></Item>
+    <Item><Link to='/works'>Works</Link></Item>
+    <Item><Link to='/photos'>Photos</Link></Item>
+    <Item><Link to='/blog'>Blog</Link></Item>
+    <Item><Link to='/contact'>Contact</Link></Item>
   </Container>
 );
 
