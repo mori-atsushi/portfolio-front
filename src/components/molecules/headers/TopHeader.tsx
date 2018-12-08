@@ -11,7 +11,7 @@ export default () => (
         <Content>
           <Title>Mori Atsushi</Title>
           <Description>
-            <Line>Enginner</Line>
+            <Line>Engineer</Line>
             <Line>and</Line>
             <Line>Photographer</Line>
           </Description>
