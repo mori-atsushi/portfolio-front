@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Date from 'src/components/atoms/dates/Date';
+import Paragraph from 'src/components/atoms/paragraphs/Paragraph';
 
 import IBlog from 'src/entities/blog';
 
@@ -12,7 +13,9 @@ export default (props: IBlog) => (
         <Date date={ props.releaseAt } />
       </DateWrapper>
       <Title>{ props.title }</Title>
-      <Description>{ props.description }</Description>
+      <Description>
+        <Paragraph>{ props.description }</Paragraph>
+      </Description>
     </Content>
     <ImageWrapper>
       <Image src={ props.ogpImage } />
