@@ -2,9 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from "redux"
+import styled from 'styled-components';
 
 import BlogHeader from 'src/components/molecules/headers/BlogHeader';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
+import BlogDetail from 'src/components/organisms/Blogs/BlogDetail';
 
 import { IState } from 'src/modules';
 import { BlogArticleActions, IBlogArticleState, IFetchRequest } from 'src/modules/blogArticle';
@@ -24,18 +26,22 @@ interface IProps extends RouteComponentProps<{id: string}>, IStateProps, IAction
 class BlogArticlePage extends React.Component<IProps> {
   public componentDidMount() {
     const id = Number(this.props.match.params.id);
-    const article = this.props.blogArticle.article ;
+    const article = this.props.blogArticle.article;
     if(!article || article.id !== id) {
       this.props.requestLoad({ id });
     }
   }
 
   public render(): JSX.Element {
+    const article = this.props.blogArticle.article;
+
     return (
       <>
         <MenuHeader />
         <BlogHeader />
-        <>{ this.props.match.params.id }</>
+        <Content>
+          { article && <BlogDetail { ...article } /> }
+        </Content>
       </>
     );
   }
@@ -59,3 +65,9 @@ const BlogPageContainer = connect<IStateProps, IActionProps>(
 )(BlogArticlePage);
 
 export default BlogPageContainer;
+
+const Content = styled.section`
+  margin: 0 auto;
+  padding: 2rem 5%;
+  max-width: 1000px;
+`;
