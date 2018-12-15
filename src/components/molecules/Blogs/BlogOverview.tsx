@@ -1,11 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Date from 'src/components/atoms/dates/Date';
+
 import IBlog from 'src/entities/blog';
 
 export default (props: IBlog) => (
   <Wrapper>
     <Content>
+      <DateWrapper>
+        <Date date={ props.releaseAt } />
+      </DateWrapper>
       <Title>{ props.title }</Title>
       <Description>{ props.description }</Description>
     </Content>
@@ -22,6 +27,10 @@ const Wrapper = styled.div`
 const Content = styled.div`
   flex: 1;
   margin-right: 0.5rem;
+`;
+
+const DateWrapper = styled.div`
+  color: #666666;
 `;
 
 const Title = styled.h2`
