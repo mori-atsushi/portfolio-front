@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from "redux"
+import styled from 'styled-components';
 
 import Footer from 'src/components/molecules/footers/Footer';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
+import BlogList from 'src/components/organisms/Blogs/BlogList';
 
-import IBlog from 'src/entities/blog';
 import { IState } from 'src/modules';
 import { BlogActions, IBlogState } from 'src/modules/blogs';
 
@@ -28,12 +29,12 @@ class BlogPage extends React.Component<IProps> {
   public render(): JSX.Element {
     return (
       <>
-      <MenuHeader />
-        { this.props.blogs.list.map((blog: IBlog) => (
-          <div>{ blog.title }</div>
-        )) }
-      <Footer />
-    </>
+        <MenuHeader />
+        <Content>
+          <BlogList list={ this.props.blogs.list } />
+        </Content>
+        <Footer />
+      </>
     );
   }
 }
@@ -56,3 +57,9 @@ const BlogPageContainer = connect<IStateProps, IActionProps>(
 )(BlogPage);
 
 export default BlogPageContainer;
+
+const Content = styled.section`
+  margin: 0 auto;
+  padding: 2rem 5%;
+  max-width: 1000px;
+`;

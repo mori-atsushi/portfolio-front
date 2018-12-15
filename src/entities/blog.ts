@@ -3,4 +3,5 @@ export default interface IBlog {
   title: string,
   description: string,
   content: string,
+  ogpImage?: string,
 }
