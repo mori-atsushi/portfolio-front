@@ -43,7 +43,7 @@ const Title = styled.h2`
   line-height: 3rem;
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   line-height: 1.5rem;
 `;
 

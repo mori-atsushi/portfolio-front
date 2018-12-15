@@ -6,6 +6,10 @@ interface IProps {
 
 export default (props: IProps) => (
   <div>
-    { props.children.split("\n").map(line => (<p>{ line }</p>)) }
+    {
+      props.children.split("\n").map((line: string, index: number) =>
+        <p key={ `line_${ index }` }>{ line }</p>
+      )
+    }
   </div>
 );
