@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styledComponents from 'styled-components';
 
-import Footer from '../molecules/footers/Footer';
 import MenuHeader from '../molecules/headers/MenuHeader';
 
 export default () => (
@@ -13,7 +12,6 @@ export default () => (
         <Text>coming soon</Text>
       </Message>
     </Wrapper>
-    <Footer />
   </>
 );
 

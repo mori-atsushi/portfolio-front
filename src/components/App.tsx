@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Route, Router } from 'react-router-dom'
 
-import history from './history';
+import Footer from 'src/components/molecules/footers/Footer';
 import Blog from './pages/Blog';
 import ComingSoon from './pages/ComingSoon';
 import Top from './pages/Top';
+
+import history from './history';
 
 class App extends React.Component {
   public render() {
@@ -16,6 +18,7 @@ class App extends React.Component {
           <Route path='/photos' component={ComingSoon} />
           <Route path='/blog' component={Blog} />
           <Route path='/contact' component={ComingSoon} />
+          <Footer />
         </>
       </Router>
     );
