@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const domain = 'http://localhost:8080';
+import config from 'src/helper/config';
+
+const domain = config.apiUrl;
 
 export async function getRequest<T>(path: string): Promise<T> {
   return axios.request<T>({ url: `${ domain }${ path }` })
