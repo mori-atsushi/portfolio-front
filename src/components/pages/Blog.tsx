@@ -4,6 +4,7 @@ import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
 import Footer from 'src/components/molecules/footers/Footer';
+import BlogHeader from 'src/components/molecules/headers/BlogHeader';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import BlogList from 'src/components/organisms/Blogs/BlogList';
 
@@ -30,6 +31,7 @@ class BlogPage extends React.Component<IProps> {
     return (
       <>
         <MenuHeader />
+        <BlogHeader />
         <Content>
           <BlogList list={ this.props.blogs.list } />
         </Content>
