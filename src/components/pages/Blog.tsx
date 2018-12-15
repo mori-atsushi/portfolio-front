@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from "redux"
+import styled from 'styled-components';
 
 import Footer from 'src/components/molecules/footers/Footer';
+import BlogHeader from 'src/components/molecules/headers/BlogHeader';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
+import BlogList from 'src/components/organisms/Blogs/BlogList';
 
-import IBlog from 'src/entities/blog';
 import { IState } from 'src/modules';
 import { BlogActions, IBlogState } from 'src/modules/blogs';
 
@@ -22,18 +24,23 @@ interface IProps extends IStateProps, IActionProps {
 
 class BlogPage extends React.Component<IProps> {
   public componentDidMount() {
-    this.props.requestLoad();
+    if(this.props.blogs.loadState === 'init') {
+      this.props.requestLoad();
+    }
   }
 
   public render(): JSX.Element {
     return (
       <>
-      <MenuHeader />
-        { this.props.blogs.list.map((blog: IBlog) => (
-          <div>{ blog.title }</div>
-        )) }
-      <Footer />
-    </>
+        <MenuHeader />
+        <BlogHeader />
+        <Content>
+          <BlogList
+            list={ this.props.blogs.list }
+            isLoading={ this.props.blogs.loadState === 'loading' } />
+        </Content>
+        <Footer />
+      </>
     );
   }
 }
@@ -56,3 +63,9 @@ const BlogPageContainer = connect<IStateProps, IActionProps>(
 )(BlogPage);
 
 export default BlogPageContainer;
+
+const Content = styled.section`
+  margin: 0 auto;
+  padding: 2rem 5%;
+  max-width: 1000px;
+`;

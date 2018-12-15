@@ -20,6 +20,7 @@ const Container = styledComponents.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  z-index: 100;
 `;
 
 const Title = styledComponents.h1`
