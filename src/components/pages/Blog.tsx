@@ -24,7 +24,9 @@ interface IProps extends IStateProps, IActionProps {
 
 class BlogPage extends React.Component<IProps> {
   public componentDidMount() {
-    this.props.requestLoad();
+    if(this.props.blogs.loadState === 'init') {
+      this.props.requestLoad();
+    }
   }
 
   public render(): JSX.Element {
@@ -33,7 +35,9 @@ class BlogPage extends React.Component<IProps> {
         <MenuHeader />
         <BlogHeader />
         <Content>
-          <BlogList list={ this.props.blogs.list } />
+          <BlogList
+            list={ this.props.blogs.list }
+            isLoading={ this.props.blogs.loadState === 'loading' } />
         </Content>
         <Footer />
       </>
