@@ -33,14 +33,12 @@ class BlogArticlePage extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
-    const article = this.props.blogArticle.article;
-
     return (
       <>
         <MenuHeader />
         <BlogHeader />
         <Content>
-          { article && <BlogDetail { ...article } /> }
+          <BlogDetail { ...this.props.blogArticle } />
         </Content>
       </>
     );

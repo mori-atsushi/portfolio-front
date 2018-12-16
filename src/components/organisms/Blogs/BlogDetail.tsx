@@ -3,20 +3,25 @@ import styled from 'styled-components';
 
 import Date from 'src/components/atoms/dates/Date';
 import Markdown from 'src/components/molecules/markdowns/Markdown';
+import LoadingComponent from 'src/components/molecules/spinners/LoadingComponent';
 
-import IBlog from 'src/entities/blog';
+import { IBlogArticleState } from 'src/modules/blogArticle';
 
-export default (props: IBlog) => (
-  <Wrapper>
-    <DateWrapper>
-      <Date date={ props.releaseAt } />
-    </DateWrapper>
-    <Title>{ props.title }</Title>
-    <Markdown>
-      { props.content }
-    </Markdown>
-  </Wrapper>
-)
+export default (props: IBlogArticleState) => (
+  <LoadingComponent isLoading={ props.loadState === 'loading' }>
+    { props.article && (
+      <Wrapper>
+        <DateWrapper>
+          <Date date={ props.article.releaseAt } />
+        </DateWrapper>
+        <Title>{ props.article.title }</Title>
+        <Markdown>
+          { props.article.content }
+        </Markdown>
+      </Wrapper>
+    ) }
+  </LoadingComponent>
+);
 
 const Wrapper = styled.div`
 `;
