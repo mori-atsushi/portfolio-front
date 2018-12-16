@@ -1,0 +1,4 @@
+.markdown-body.markdown-body ol,
+.markdown-body.markdown-body ul {
+  list-style-type: disc;
+}
