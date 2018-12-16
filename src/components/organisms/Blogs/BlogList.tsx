@@ -37,7 +37,7 @@ const Wrapper = styled.div``;
 
 const Item = styled.div`
   &:not(:last-child){
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 `;
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Button from 'src/components/atoms/buttons/Button';
 import Date from 'src/components/atoms/dates/Date';
 import Paragraph from 'src/components/atoms/paragraphs/Paragraph';
 
@@ -16,6 +17,7 @@ export default (props: IBlog) => (
       <Description>
         <Paragraph>{ props.description }</Paragraph>
       </Description>
+      <Button to={ `/blog/${ props.id }` } >続きを読む</Button>
     </Content>
     <ImageWrapper>
       <Image src={ props.ogpImage } />
@@ -45,6 +47,7 @@ const Title = styled.h2`
 
 const Description = styled.div`
   line-height: 1.5rem;
+  margin-bottom: 2rem;
 `;
 
 const ImageWrapper = styled.div`
