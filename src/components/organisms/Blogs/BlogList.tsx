@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Spinner from 'src/components/atoms/spinners/Spinner';
 import BlogOverview from 'src/components/molecules/Blogs/BlogOverview';
+import LoadingComponent from 'src/components/molecules/spinners/LoadingComponent';
 
 import IBlog from 'src/entities/blog';
 
@@ -11,16 +11,8 @@ interface IProps {
   isLoading?: boolean,
 }
 
-export default (props: IProps): JSX.Element => {
-  if (props.isLoading) {
-    return (
-      <SpinnerWrapper>
-        <Spinner />
-      </SpinnerWrapper>
-    );
-  }
-
-  return(
+export default (props: IProps): JSX.Element => (
+  <LoadingComponent isLoading={ props.isLoading }>
     <Wrapper>
       {
         props.list.map((blog: IBlog) => (
@@ -30,17 +22,13 @@ export default (props: IProps): JSX.Element => {
         ))
       }
     </Wrapper>
-  );
-};
+  </LoadingComponent>
+);
 
 const Wrapper = styled.div``;
 
 const Item = styled.div`
   &:not(:last-child){
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
-`;
-
-const SpinnerWrapper = styled.div`
-  margin: 5rem 0;
 `;

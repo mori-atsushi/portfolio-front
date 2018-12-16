@@ -1,30 +1,34 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
 import BlogHeader from 'src/components/molecules/headers/BlogHeader';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
-import BlogList from 'src/components/organisms/Blogs/BlogList';
+import BlogDetail from 'src/components/organisms/Blogs/BlogDetail';
 
 import { IState } from 'src/modules';
-import { BlogActions, IBlogState } from 'src/modules/blogs';
+import { BlogArticleActions, IBlogArticleState, IFetchRequest } from 'src/modules/blogArticle';
+
 
 interface IStateProps {
-  blogs: IBlogState;
+  blogArticle: IBlogArticleState;
 }
 
 interface IActionProps {
-  requestLoad: () => void;
+  requestLoad: (request: IFetchRequest) => void;
 }
 
-interface IProps extends IStateProps, IActionProps {
+interface IProps extends RouteComponentProps<{id: string}>, IStateProps, IActionProps {
 }
 
-class BlogPage extends React.Component<IProps> {
+class BlogArticlePage extends React.Component<IProps> {
   public componentDidMount() {
-    if(this.props.blogs.loadState === 'init') {
-      this.props.requestLoad();
+    const id = Number(this.props.match.params.id);
+    const article = this.props.blogArticle.article;
+    if(!article || article.id !== id) {
+      this.props.requestLoad({ id });
     }
   }
 
@@ -34,9 +38,7 @@ class BlogPage extends React.Component<IProps> {
         <MenuHeader />
         <BlogHeader />
         <Content>
-          <BlogList
-            list={ this.props.blogs.list }
-            isLoading={ this.props.blogs.loadState === 'loading' } />
+          <BlogDetail { ...this.props.blogArticle } />
         </Content>
       </>
     );
@@ -45,20 +47,20 @@ class BlogPage extends React.Component<IProps> {
 
 const mapStateToProps = (state: IState): IStateProps => {
   return {
-    blogs: state.blogs
+    blogArticle: state.blogArticle
   };
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): IActionProps => {
   return bindActionCreators({
-    requestLoad: BlogActions.requestLoad.started,
+    requestLoad: BlogArticleActions.requestLoad.started,
   }, dispatch);
 }
 
 const BlogPageContainer = connect<IStateProps, IActionProps>(
   mapStateToProps,
   mapDispatchToProps
-)(BlogPage);
+)(BlogArticlePage);
 
 export default BlogPageContainer;
 
