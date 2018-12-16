@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
+import Helmet from 'src/components/atoms/helmets/Helmet';
 import BlogHeader from 'src/components/molecules/headers/BlogHeader';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import BlogDetail from 'src/components/organisms/Blogs/BlogDetail';
@@ -33,8 +34,15 @@ class BlogArticlePage extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
+    const article = this.props.blogArticle.article;
+    const pageTitle = article ? `${ article.title } - ` : '';
+
     return (
       <>
+        <Helmet
+          pageTitle={ `${ pageTitle }Blog` }
+          ogpImage={ article && article.ogpImage }
+          description={ article && article.description } />
         <MenuHeader />
         <BlogHeader />
         <Content>
