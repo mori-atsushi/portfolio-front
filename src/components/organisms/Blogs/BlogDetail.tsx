@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
 import Date from 'src/components/atoms/dates/Date';
+import Markdown from 'src/components/molecules/markdowns/Markdown';
 
 import IBlog from 'src/entities/blog';
 
@@ -12,7 +12,9 @@ export default (props: IBlog) => (
       <Date date={ props.releaseAt } />
     </DateWrapper>
     <Title>{ props.title }</Title>
-    <ReactMarkdown source={ props.content } />
+    <Markdown>
+      { props.content }
+    </Markdown>
   </Wrapper>
 )
 
