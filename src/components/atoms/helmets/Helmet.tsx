@@ -25,6 +25,7 @@ export default (props: IProps) => {
       <meta name="description" content={ description } />
       <meta name="keywords" content={ keywords.join(' ') } />
       <link rel="canonical" href={ url } />
+      <meta property="og:site_name" content="Mori Atsushi | Engineer and Photographer" />
       <meta property="og:title" content={ title } />
       <meta property="og:description" content={ description } />
       <meta property="og:url" content={ url } />

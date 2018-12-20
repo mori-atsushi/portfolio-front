@@ -19,6 +19,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn build
+      - run:
+          name: Copy Prerender.io Setting File
+          command: cp code.js build/code.js
       - persist_to_workspace:
           root: .
           paths: build
@@ -35,7 +38,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync build/ s3://atsushi-portfolio --delete
+          command: aws s3 sync build/ s3://prerender-webbucket-1miad0l9rqz7t --delete
 
 workflows:
   version: 2
