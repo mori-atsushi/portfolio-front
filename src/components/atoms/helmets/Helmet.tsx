@@ -17,7 +17,6 @@ export default (props: IProps) => {
   const description = props.description || '森 篤史のポートフォリオサイト';
   const opgImage = props.ogpImage || 'https://at-sushi.work%PUBLIC_URL%/ogp.jpg';
   const keywords = [...(props.keywords || []), 'Mori Atsushi', '森 篤史'];
-  console.log(url);
 
   return (
     <Helmet>
