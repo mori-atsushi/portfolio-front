@@ -19,9 +19,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn build
-      - run:
-          name: Copy Prerender.io Setting File
-          command: cp code.js build/code.js
       - persist_to_workspace:
           root: .
           paths: build
