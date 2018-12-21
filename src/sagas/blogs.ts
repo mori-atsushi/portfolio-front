@@ -9,7 +9,7 @@ function* fetchAll() {
   try {
     const response = yield api.getList();
     yield put(BlogActions.requestLoad.done({
-      result: { list: response }
+      result: { list: response.list }
     }));
   } catch (err) {
     yield put(BlogActions.requestLoad.failed({ error: void 0 }));
