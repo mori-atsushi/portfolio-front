@@ -1,11 +1,12 @@
 import { getRequest } from 'src/api/common';
 import { blogListMapper, blogMapper } from 'src/api/mapper';
-import { IBlogResponse } from 'src/api/response';
+import { IBlogListResponse, IBlogResponse } from 'src/api/response';
 import IBlog from 'src/entities/blog';
+import IBlogList from 'src/entities/blogList';
 
-export async function getList(): Promise<IBlog[]> {
-  return getRequest<IBlogResponse[]>('/blog')
-    .then((list) => blogListMapper(list));
+export async function getList(): Promise<IBlogList> {
+  return getRequest<IBlogListResponse>('/blog')
+    .then((result) => blogListMapper(result));
 }
 
 export async function getItem(id: number): Promise<IBlog> {
