@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
-import ogpImage from 'src/statics/images/ogp.jpg';
+import config from 'src/helper/config';
 
 interface IProps {
   pageTitle?: string;
@@ -17,7 +17,7 @@ export default (props: IProps) => {
     : `${ siteTitle } | Engineer and Photographer`
   const url = location.href;
   const description = props.description || '森 篤史のポートフォリオサイト';
-  const opgImage = props.ogpImage || `https://at-sushi.work${ogpImage}`;
+  const opgImage = props.ogpImage || `${ config.domain }/ogp.jpg`;
   const keywords = [...(props.keywords || []), 'Mori Atsushi', '森 篤史'];
 
   return (
