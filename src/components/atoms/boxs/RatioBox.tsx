@@ -1,37 +1,75 @@
+import bind from 'autobind-decorator';
 import * as React from 'react';
 import styledComponents from 'styled-components';
 
 interface IProps {
   width: number;
   height: number;
-  maxHeight?: string | number;
+  maxHeight?: number;
   children: JSX.Element | JSX.Element[] | string;
 }
 
-export default (props: IProps) => {
-  const containerStyle: React.CSSProperties = {
-    maxHeight: props.maxHeight
-  };
-  const spacerStyle: React.CSSProperties = {
-    paddingBottom: `${ (props.height / props.width) * 100 }%`,
-  };
+interface IState {
+  clientWidth?: number;
+}
 
-  return (
-    <Container style={ containerStyle }>
-      <Spacer style={ spacerStyle } />
-      <Content>
-        { props.children }
-      </Content>
-    </Container>
-  );
+export default class RatioBox extends React.Component<IProps, IState> {
+  private element: HTMLDivElement;
+
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
+
+  /**
+   * component did mount
+   */
+  public componentDidMount() {
+    this.setState({ clientWidth: this.element.clientWidth });
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  /**
+   * Component will unmount
+   */
+  public componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+
+  public render(): JSX.Element {
+    const ratioHeight = (this.state.clientWidth || 0) / this.props.width * this.props.height;
+    const maxHeight = this.props.maxHeight;
+    const height = maxHeight !== undefined && maxHeight < ratioHeight ? maxHeight : ratioHeight;
+
+    const style: React.CSSProperties = { height };
+
+    return (
+      <Container
+        style={ style }
+        ref={ (el: HTMLDivElement) => { this.element = el; } }>
+        <Content>
+          { this.props.children }
+        </Content>
+      </Container>
+    );
+  }
+
+
+  /**
+   * handle resize
+   */
+  @bind private handleResize() {
+    if (this.element) {
+      this.setState({ clientWidth: this.element.clientWidth });
+    }
+  }
 }
 
 const Container = styledComponents.div`
   position: relative;
   width: 100%;
 `;
-
-const Spacer = styledComponents.div``;
 
 const Content = styledComponents.div`
   position: absolute;

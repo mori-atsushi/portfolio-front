@@ -10,6 +10,7 @@
     "@types/react-helmet": "^5.0.7",
     "@types/react-highlight": "^0.12.1",
     "@types/redux-logger": "^3.0.6",
+    "autobind-decorator": "^2.4.0",
     "axios": "^0.18.0",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.13.1",
