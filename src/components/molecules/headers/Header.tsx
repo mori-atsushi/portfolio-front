@@ -2,18 +2,21 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import RatioBox from 'src/components/atoms/boxs/RatioBox';
-import HeaderImg from 'src/statics/images/blog_header.jpg';
 
-export default () => (
+interface IProps {
+  title: string;
+  backgroundImage: string;
+}
+
+export default (props: IProps) => (
   <RatioBox width={12} height={5} maxHeight={300}>
-    <BackgroundImage>
-      <Container>Blog</Container>
+    <BackgroundImage style={ { backgroundImage: `url(${props.backgroundImage})` } }>
+      <Container>{ props.title }</Container>
     </BackgroundImage>
   </RatioBox>
 );
 
 const BackgroundImage = styled.div`
-  background-image: url(${ HeaderImg });
   background-size: cover;
   background-position: center;
   width: 100%;

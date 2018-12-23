@@ -4,9 +4,10 @@ import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
 import Helmet from 'src/components/atoms/helmets/Helmet';
-import BlogHeader from 'src/components/molecules/headers/BlogHeader';
+import Header from 'src/components/molecules/headers/Header';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import BlogList from 'src/components/organisms/Blogs/BlogList';
+import HeaderImg from 'src/statics/images/blog_header.jpg';
 
 import { IState } from 'src/modules';
 import { BlogActions, IBlogState } from 'src/modules/blogs';
@@ -35,7 +36,9 @@ class BlogPage extends React.Component<IProps> {
         <Helmet
           pageTitle='Blog' />
         <MenuHeader />
-        <BlogHeader />
+        <Header
+          title="Blog"
+          backgroundImage={HeaderImg} />
         <Content>
           <BlogList
             list={ this.props.blogs.list }
