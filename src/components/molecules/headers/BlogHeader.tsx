@@ -5,7 +5,7 @@ import RatioBox from 'src/components/atoms/boxs/RatioBox';
 import HeaderImg from 'src/statics/images/blog_header.jpg';
 
 export default () => (
-  <RatioBox width={12} height={5} maxHeight='300px'>
+  <RatioBox width={12} height={5} maxHeight={300}>
     <BackgroundImage>
       <Container>Blog</Container>
     </BackgroundImage>
