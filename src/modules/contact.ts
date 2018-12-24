@@ -1,6 +1,8 @@
 import typescriptFsa from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
+import { IContactRequest } from 'src/api/request';
+
 type LoadState = 'init' | 'loading' | 'error' | 'success';
 
 // Actions
@@ -13,19 +15,13 @@ enum ActionType {
 const actionCreator = typescriptFsa();
 
 export const ContactActions = {
-  changeRequest: actionCreator<IFetchRequest>(ActionType.CHANGE_REQUEST),
-  requestSend: actionCreator.async<IFetchRequest, void, void>(ActionType.REQUEST_SEND),
+  changeRequest: actionCreator<IContactRequest>(ActionType.CHANGE_REQUEST),
+  requestSend: actionCreator.async<IContactRequest, void, void>(ActionType.REQUEST_SEND),
 }
 
 // Reducer
-export interface IContactState extends IFetchRequest {
+export interface IContactState extends IContactRequest {
   loadState: LoadState;
-}
-
-export interface IFetchRequest {
-  name: string;
-  email: string;
-  message: string;
 }
 
 const initialState: IContactState = {
@@ -55,7 +51,7 @@ const fetchFailedHandler = (state: IContactState): IContactState => {
 
 const changeRequestHandler = (
   state: IContactState,
-  payload: IFetchRequest,
+  payload: IContactRequest,
 ): IContactState => {
   return {...state, ...payload};
 }

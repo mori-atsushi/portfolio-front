@@ -36,7 +36,8 @@ export default class Button extends React.Component<IProps> {
   }
 }
 
-const DivButton = styled.div`
+const DivButton = styled.button`
+  border: none;
   padding: 0.8rem 1.4rem;
   display: inline-block;
   background-color: #333333;

@@ -9,16 +9,18 @@ import Header from 'src/components/molecules/headers/Header';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import HeaderImg from 'src/statics/images/contact_header.jpg';
 
+import { IContactRequest } from 'src/api/request';
 import { IState } from 'src/modules';
-import { ContactActions, IContactState, IFetchRequest } from 'src/modules/contact';
+import { ContactActions, IContactState } from 'src/modules/contact';
+
 
 interface IStateProps {
   contactState: IContactState;
 }
 
 interface IActionProps {
-  requestSend: (request: IFetchRequest) => void;
-  changeRequest: (request: IFetchRequest) => void;
+  requestSend: (request: IContactRequest) => void;
+  changeRequest: (request: IContactRequest) => void;
 }
 
 interface IProps extends IStateProps, IActionProps {

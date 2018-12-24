@@ -6,13 +6,13 @@ import Button from 'src/components/atoms/buttons/Button';
 import TextArea from 'src/components/atoms/forms/TextArea';
 import TextInput from 'src/components/atoms/forms/TextInput';
 
-import { IContactState, IFetchRequest } from 'src/modules/contact';
-
+import { IContactRequest } from 'src/api/request';
+import { IContactState } from 'src/modules/contact';
 
 interface IProps {
   contactState: IContactState;
-  onSend: (value: IFetchRequest) => void;
-  onChange: (value: IFetchRequest) => void;
+  onSend: (value: IContactRequest) => void;
+  onChange: (value: IContactRequest) => void;
 }
 
 export default class ContactFrom extends React.Component<IProps> {

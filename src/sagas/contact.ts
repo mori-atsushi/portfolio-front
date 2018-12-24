@@ -2,10 +2,12 @@ import { SagaIterator } from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 
 import * as api from 'src/api/contact';
-import { ContactActions, IFetchRequest } from 'src/modules/contact';
+import { IContactRequest } from 'src/api/request';
+import { ContactActions } from 'src/modules/contact';
 
 
-function* send(action: {type: string, payload: IFetchRequest}) {
+
+function* send(action: {type: string, payload: IContactRequest}) {
   try {
     yield api.send(action.payload);
     yield put(ContactActions.requestSend.done({
