@@ -8,16 +8,28 @@ interface IProps {
   type?: string;
   name?: string;
   required?: boolean;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-export default (props: IProps) => (
-  <Label label={ props.label }>
-      <Input
-      type={ props.type || 'text' }
-      name={ props.name }
-      required={ props.required } />
-  </Label>
-);
+export default (props: IProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(props.onChange) {
+      props.onChange(e.target.value);
+    }
+  };
+
+  return (
+    <Label label={ props.label }>
+        <Input
+          value={ props.value }
+          onChange={ handleChange }
+          type={ props.type || 'text' }
+          name={ props.name }
+          required={ props.required } />
+    </Label>
+  )
+};
 
 const Input = styled.input`
   display: block;

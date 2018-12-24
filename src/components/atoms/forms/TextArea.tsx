@@ -5,13 +5,26 @@ import Label from 'src/components/atoms/forms/Label';
 
 interface IProps {
   label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-export default (props: IProps) => (
-  <Label label={ props.label }>
-    <Input rows={ 5 } />
-  </Label>
-);
+export default (props: IProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if(props.onChange) {
+      props.onChange(e.target.value);
+    }
+  };
+
+  return (
+    <Label label={ props.label }>
+      <Input
+        value={ props.value }
+        onChange={ handleChange }
+        rows={ 5 } />
+    </Label>
+  )
+};
 
 const Input = styled.textarea`
   display: block;
