@@ -5,9 +5,10 @@ import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
 import Helmet from 'src/components/atoms/helmets/Helmet';
-import BlogHeader from 'src/components/molecules/headers/BlogHeader';
+import Header from 'src/components/molecules/headers/Header';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import BlogDetail from 'src/components/organisms/Blogs/BlogDetail';
+import HeaderImg from 'src/statics/images/blog_header.jpg';
 
 import { IState } from 'src/modules';
 import { BlogArticleActions, IBlogArticleState, IFetchRequest } from 'src/modules/blogArticle';
@@ -44,7 +45,9 @@ class BlogArticlePage extends React.Component<IProps> {
           ogpImage={ article && article.ogpImage }
           description={ article && article.description } />
         <MenuHeader />
-        <BlogHeader />
+        <Header
+          title="Blog"
+          backgroundImage={HeaderImg} />
         <Content>
           <BlogDetail { ...this.props.blogArticle } />
         </Content>

@@ -11,3 +11,15 @@ export async function getRequest<T>(path: string): Promise<T> {
       throw err;
     });
 }
+
+export async function postRequest<T>(path: string, data: any): Promise<T> {
+  return axios.request<T>({
+    data,
+    method: 'POST',
+    url: `${ domain }${ path }`,
+  })
+    .then((response) => response.data)
+    .catch(err => {
+      throw err;
+    });
+}

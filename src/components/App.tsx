@@ -5,6 +5,7 @@ import Footer from 'src/components/molecules/footers/Footer';
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
 import ComingSoon from './pages/ComingSoon';
+import Contact from './pages/Contact';
 import Top from './pages/Top';
 
 import history from './history';
@@ -19,7 +20,7 @@ class App extends React.Component {
           <Route path='/photos' component={ComingSoon} />
           <Route path='/blog' component={Blog} exact={true} />
           <Route path='/blog/:id' component={BlogArticle} />
-          <Route path='/contact' component={ComingSoon} />
+          <Route path='/contact' component={Contact} />
           <Footer />
         </>
       </Router>
