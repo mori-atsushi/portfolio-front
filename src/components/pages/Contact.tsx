@@ -18,6 +18,7 @@ interface IStateProps {
 
 interface IActionProps {
   requestSend: (request: IFetchRequest) => void;
+  changeRequest: (request: IFetchRequest) => void;
 }
 
 interface IProps extends IStateProps, IActionProps {
@@ -33,7 +34,10 @@ const ContactPage = (props: IProps) => (
       backgroundImage={HeaderImg} />
     <Content>
       <Message>このサイト内の内容に関するお問い合わせ、お仕事の依頼等、お気軽にお問い合わせください。</Message>
-      <ContactForm onSend={ props.requestSend }/>
+      <ContactForm
+        contactState={ props.contactState }
+        onChange={ props.changeRequest }
+        onSend={ props.requestSend }/>
     </Content>
   </>
 );
@@ -46,6 +50,7 @@ const mapStateToProps = (state: IState): IStateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): IActionProps => {
   return bindActionCreators({
+    changeRequest: ContactActions.changeRequest,
     requestSend: ContactActions.requestSend.started,
   }, dispatch);
 }

@@ -6,24 +6,29 @@ import Button from 'src/components/atoms/buttons/Button';
 import TextArea from 'src/components/atoms/forms/TextArea';
 import TextInput from 'src/components/atoms/forms/TextInput';
 
-import { IFetchRequest } from 'src/modules/contact';
+import { IContactState, IFetchRequest } from 'src/modules/contact';
 
 
 interface IProps {
+  contactState: IContactState;
   onSend: (value: IFetchRequest) => void;
+  onChange: (value: IFetchRequest) => void;
 }
 
-export default class ContactFrom extends React.Component<IProps, IFetchRequest> {
+export default class ContactFrom extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-      email: '',
-      message: '',
-      name: '',
-    };
   }
 
   public render(): JSX.Element {
+    const message = (() => {
+      switch(this.props.contactState.loadState) {
+        case 'success': return '送信しました。';
+        case 'error': return '予期せぬエラーが発生しました。しばらくしてからもう一度お試しください。';
+        default: return undefined;
+      }
+    })();
+
     return (
       <Form>
         <Row>
@@ -31,52 +36,62 @@ export default class ContactFrom extends React.Component<IProps, IFetchRequest> 
             label="名前"
             type="text"
             name="name"
-            value={ this.state.name }
+            value={ this.props.contactState.name }
             onChange={ this.handleNameChange }
             required={ true } />
           <TextInput
             label="メールアドレス"
             type="email"
             name="email"
-            value={ this.state.email }
+            value={ this.props.contactState.email }
             onChange={ this.handleEmailChange }
             required={ true } />
         </Row>
         <Wide>
           <TextArea
-            value={ this.state.message }
+            value={ this.props.contactState.message }
             onChange={ this.handleMessageChange }
             label="内容" />
         </Wide>
         <Submit>
           <Button onClick={ this.handleButtonClick }>送信</Button>
         </Submit>
+        <Message>{ message }</Message>
       </Form>
     );
   }
 
   @bind
   private handleNameChange(value: string) {
-    this.setState({ name: value });
+    this.props.onChange({
+      ...this.props.contactState,
+      name: value,
+    })
   }
 
   @bind
   private handleEmailChange(value: string) {
-    this.setState({ email: value });
+    this.props.onChange({
+      ...this.props.contactState,
+      email: value,
+    })
   }
 
   @bind
   private handleMessageChange(value: string) {
-    this.setState({ message: value });
+    this.props.onChange({
+      ...this.props.contactState,
+      message: value,
+    })
   }
 
   @bind
   private handleButtonClick() {
-    this.props.onSend(this.state);
+    this.props.onSend(this.props.contactState);
   }
 }
 
-const Form = styled.form`
+const Form = styled.div`
   margin-top: 3rem;
 `;
 
@@ -95,4 +110,7 @@ const Submit = styled(Wide)`
   justify-content: center;
 `;
 
+const Message = styled.div`
+  text-align: center;
+`;
 

@@ -4,7 +4,7 @@ import reduxSaga from 'redux-saga';
 
 import blogArticle, { IBlogArticleState } from 'src/modules/blogArticle';
 import blogs, { IBlogState } from 'src/modules/blogs';
-import contacts, { IContactState } from 'src/modules/contact';
+import contact, { IContactState } from 'src/modules/contact';
 import sagas from 'src/sagas';
 
 export interface IState {
@@ -16,10 +16,10 @@ export interface IState {
 const sagaMiddleware = reduxSaga();
 
 export const store = createStore(
-  combineReducers({
+  combineReducers<IState>({
     blogArticle,
     blogs,
-    contacts,
+    contact,
   }),
   applyMiddleware(sagaMiddleware, reduxLogger)
 );
