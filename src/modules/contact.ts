@@ -16,16 +16,18 @@ const actionCreator = typescriptFsa();
 
 export const ContactActions = {
   changeRequest: actionCreator<IContactRequest>(ActionType.CHANGE_REQUEST),
-  requestSend: actionCreator.async<IContactRequest, void, void>(ActionType.REQUEST_SEND),
+  requestSend: actionCreator.async<IContactRequest, void, { message: string }>(ActionType.REQUEST_SEND),
 }
 
 // Reducer
 export interface IContactState extends IContactRequest {
   loadState: LoadState;
+  errorMessage: string;
 }
 
 const initialState: IContactState = {
   email: '',
+  errorMessage: '',
   loadState: 'init',
   message: '',
   name: '',
@@ -39,14 +41,22 @@ const fetchSuccessHandler = (state: IContactState): IContactState => {
   return {
     ...state,
     email: '',
+    errorMessage: '',
     loadState: 'success',
     message: '',
     name: '',
   };
 }
 
-const fetchFailedHandler = (state: IContactState): IContactState => {
-  return {...state, loadState: 'error'};
+const fetchFailedHandler = (
+  state: IContactState,
+  payload: { error: { message: string } }
+): IContactState => {
+  return {
+    ...state,
+    errorMessage: payload.error.message,
+    loadState: 'error',
+  };
 }
 
 const changeRequestHandler = (

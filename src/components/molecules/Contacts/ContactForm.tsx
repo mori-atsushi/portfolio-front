@@ -24,7 +24,7 @@ export default class ContactFrom extends React.Component<IProps> {
     const message = (() => {
       switch(this.props.contactState.loadState) {
         case 'success': return '送信しました。';
-        case 'error': return '予期せぬエラーが発生しました。しばらくしてからもう一度お試しください。';
+        case 'error': return this.props.contactState.errorMessage;
         default: return undefined;
       }
     })();

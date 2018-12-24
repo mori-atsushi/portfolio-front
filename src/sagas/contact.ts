@@ -8,6 +8,15 @@ import { ContactActions } from 'src/modules/contact';
 
 
 function* send(action: {type: string, payload: IContactRequest}) {
+  const { email, name, message } = action.payload;
+  if(!email || !name || !message) {
+    yield put(ContactActions.requestSend.failed({
+      error: { message: 'すべてのフォームを埋めてください。' },
+      params: action.payload,
+    }));
+    return;
+  }
+
   try {
     yield api.send(action.payload);
     yield put(ContactActions.requestSend.done({
@@ -15,7 +24,7 @@ function* send(action: {type: string, payload: IContactRequest}) {
     }));
   } catch (err) {
     yield put(ContactActions.requestSend.failed({
-      error: err,
+      error: { message: '予期せぬエラーが発生しました。しばらくしてからもう一度お試しください。'},
       params: action.payload,
     }));
   }
