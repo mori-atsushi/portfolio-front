@@ -31,7 +31,22 @@ function* fetchItem(action: {type: string, payload: IFetchRequest}) {
   }
 }
 
+function* sendReadItem(action: {type: string, payload: number}) {
+  try {
+    yield api.sendRead(action.payload);
+    yield put(BlogArticleActions.requestRead.done({
+      params: action.payload,
+    }));
+  } catch (err) {
+    yield put(BlogArticleActions.requestRead.failed({
+      error: err,
+      params: action.payload,
+    }));
+  }
+}
+
 export default function* blogsSaga(): SagaIterator {
   yield takeEvery(BlogActions.requestLoad.started.type, fetchAll);
   yield takeEvery(BlogArticleActions.requestLoad.started.type, fetchItem);
+  yield takeEvery(BlogArticleActions.requestRead.started.type, sendReadItem);
 }

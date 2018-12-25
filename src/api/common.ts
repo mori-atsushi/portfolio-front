@@ -12,7 +12,7 @@ export async function getRequest<T>(path: string): Promise<T> {
     });
 }
 
-export async function postRequest<T>(path: string, data: any): Promise<T> {
+export async function postRequest<T>(path: string, data: any = null): Promise<T> {
   return axios.request<T>({
     data,
     method: 'POST',
