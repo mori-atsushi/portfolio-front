@@ -1,4 +1,4 @@
-import { getRequest } from 'src/api/common';
+import { getRequest, postRequest } from 'src/api/common';
 import { blogListMapper, blogMapper } from 'src/api/mapper';
 import { IBlogListResponse, IBlogResponse } from 'src/api/response';
 import IBlog from 'src/entities/blog';
@@ -12,4 +12,8 @@ export async function getList(): Promise<IBlogList> {
 export async function getItem(id: number): Promise<IBlog> {
   return getRequest<IBlogResponse>(`/blog/${ id }`)
     .then((item) => blogMapper(item));
+}
+
+export async function sendRead(id: number): Promise<void> {
+  return postRequest<void>(`/blog/${ id }/read`);
 }

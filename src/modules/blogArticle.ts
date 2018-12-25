@@ -8,6 +8,7 @@ type LoadState = 'init' | 'loading' | 'error' | 'success';
 // Actions
 enum ActionType {
   REQUEST_LOAD = 'blogArticle/REQUEST_LOAD',
+  REQUEST_READ = 'blogArticle/REQUEST_READ',
 }
 
 // Action Creators
@@ -15,6 +16,7 @@ const actionCreator = typescriptFsa();
 
 export const BlogArticleActions = {
   requestLoad: actionCreator.async<IFetchRequest, IFetchResult, void>(ActionType.REQUEST_LOAD),
+  requestRead: actionCreator.async<number, void, void>(ActionType.REQUEST_READ),
 }
 
 // Reducer

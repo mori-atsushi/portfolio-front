@@ -1,3 +1,4 @@
+import bind from 'autobind-decorator';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
@@ -13,25 +14,34 @@ import HeaderImg from 'src/statics/images/blog_header.jpg';
 import { IState } from 'src/modules';
 import { BlogArticleActions, IBlogArticleState, IFetchRequest } from 'src/modules/blogArticle';
 
-
 interface IStateProps {
   blogArticle: IBlogArticleState;
 }
 
 interface IActionProps {
   requestLoad: (request: IFetchRequest) => void;
+  requestRead: (request: number) => void;
 }
 
 interface IProps extends RouteComponentProps<{id: string}>, IStateProps, IActionProps {
 }
 
 class BlogArticlePage extends React.Component<IProps> {
+  private readTimeoutId?: number;
+
   public componentDidMount() {
     const id = Number(this.props.match.params.id);
     const article = this.props.blogArticle.article;
     if(!article || article.id !== id) {
       this.props.requestLoad({ id });
     }
+
+    // 30秒間ページを開いていたら既読を送信
+    this.readTimeoutId = window.setTimeout(this.readRequest, 30 * 1000);
+  }
+
+  public componentWillUnmount() {
+    window.clearTimeout(this.readTimeoutId);
   }
 
   public render(): JSX.Element {
@@ -54,6 +64,17 @@ class BlogArticlePage extends React.Component<IProps> {
       </>
     );
   }
+
+  /**
+   * このブログを読んだことをリクエストする
+   */
+  @bind private readRequest() {
+    const loadState = this.props.blogArticle.loadState;
+    const article = this.props.blogArticle.article;
+    if(loadState === 'success' && article) {
+      this.props.requestRead(article.id)
+    }
+  }
 }
 
 const mapStateToProps = (state: IState): IStateProps => {
@@ -65,6 +86,7 @@ const mapStateToProps = (state: IState): IStateProps => {
 const mapDispatchToProps = (dispatch: Dispatch): IActionProps => {
   return bindActionCreators({
     requestLoad: BlogArticleActions.requestLoad.started,
+    requestRead: BlogArticleActions.requestRead.started,
   }, dispatch);
 }
 
