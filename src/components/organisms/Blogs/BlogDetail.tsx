@@ -45,6 +45,7 @@ const ErrorMessage = styled.div`
 `;
 
 const Wrapper = styled.div`
+  margin-bottom: 3rem;
 `;
 
 const DateWrapper = styled.div`
