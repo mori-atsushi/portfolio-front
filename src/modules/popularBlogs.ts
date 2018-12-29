@@ -8,35 +8,35 @@ type LoadState = 'init' | 'loading' | 'error' | 'success';
 
 // Actions
 enum ActionType {
-  REQUEST_LOAD = 'blogs/REQUEST_LOAD',
+  REQUEST_LOAD = 'popularBlogs/REQUEST_LOAD',
 }
 
 // Action Creators
 const actionCreator = typescriptFsa();
 
-export const BlogActions = {
+export const PopularBlogsActions = {
   requestLoad: actionCreator.async<void, IBlogList, void>(ActionType.REQUEST_LOAD),
 }
 
 // Reducer
-export interface IBlogState {
+export interface IPopularBlogsState {
   loadState: LoadState;
   list: IBlog[];
 }
 
-const initialState: IBlogState = {
+const initialState: IPopularBlogsState = {
   list: [],
   loadState: 'init',
 }
 
-const requestLoadHandler = (state: IBlogState): IBlogState => {
+const requestLoadHandler = (state: IPopularBlogsState): IPopularBlogsState => {
   return {...state, loadState: 'loading'};
 }
 
 const fetchSuccessHandler = (
-  state: IBlogState,
+  state: IPopularBlogsState,
   payload: { params: void, result: {list: IBlog[]} }
-): IBlogState => {
+): IPopularBlogsState => {
   return {
     ...state,
     list: payload.result.list,
@@ -44,12 +44,12 @@ const fetchSuccessHandler = (
   };
 }
 
-const fetchFailedHandler = (state: IBlogState): IBlogState => {
+const fetchFailedHandler = (state: IPopularBlogsState): IPopularBlogsState => {
   return {...state, loadState: 'error'};
 }
 
 export default reducerWithInitialState(initialState)
-  .case(BlogActions.requestLoad.started, requestLoadHandler)
-  .case(BlogActions.requestLoad.done, fetchSuccessHandler)
-  .case(BlogActions.requestLoad.failed, fetchFailedHandler)
+  .case(PopularBlogsActions.requestLoad.started, requestLoadHandler)
+  .case(PopularBlogsActions.requestLoad.done, fetchSuccessHandler)
+  .case(PopularBlogsActions.requestLoad.failed, fetchFailedHandler)
   .build();

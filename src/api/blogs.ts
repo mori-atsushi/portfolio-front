@@ -9,6 +9,11 @@ export async function getList(): Promise<IBlogList> {
     .then((result) => blogListMapper(result));
 }
 
+export async function getPopularList(): Promise<IBlogList> {
+  return getRequest<IBlogListResponse>('/blog/popular')
+    .then((result) => blogListMapper(result));
+}
+
 export async function getItem(id: number): Promise<IBlog> {
   return getRequest<IBlogResponse>(`/blog/${ id }`)
     .then((item) => blogMapper(item));
