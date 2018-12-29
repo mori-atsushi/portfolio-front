@@ -36,6 +36,9 @@ jobs:
       - run:
           name: Deploy to S3
           command: aws s3 sync build/ s3://prerender-webbucket-1miad0l9rqz7t --delete
+      - run:
+          name: Clear CloudFront Cache
+          command: aws cloudfront create-invalidation --distribution-id $CF_DIST_ID --paths "/*"
 
 workflows:
   version: 2
