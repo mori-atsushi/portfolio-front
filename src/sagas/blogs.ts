@@ -4,15 +4,31 @@ import { put, takeEvery } from 'redux-saga/effects';
 import * as api from 'src/api/blogs';
 import { BlogArticleActions, IFetchRequest } from 'src/modules/blogArticle';
 import { BlogActions } from 'src/modules/blogs';
+import { PopularBlogsActions } from 'src/modules/popularBlogs';
 
 function* fetchAll() {
   try {
     const response = yield api.getList();
     yield put(BlogActions.requestLoad.done({
-      result: { list: response.list }
+      result: { ...response }
     }));
   } catch (err) {
-    yield put(BlogActions.requestLoad.failed({ error: void 0 }));
+    yield put(BlogActions.requestLoad.failed({
+      error: void 0
+    }));
+  }
+}
+
+function* fetchPopular() {
+  try {
+    const response = yield api.getPopularList();
+    yield put(PopularBlogsActions.requestLoad.done({
+      result: { ...response }
+    }));
+  } catch (err) {
+    yield put(PopularBlogsActions.requestLoad.failed({
+      error: void 0
+    }));
   }
 }
 
@@ -47,6 +63,7 @@ function* sendReadItem(action: {type: string, payload: number}) {
 
 export default function* blogsSaga(): SagaIterator {
   yield takeEvery(BlogActions.requestLoad.started.type, fetchAll);
+  yield takeEvery(PopularBlogsActions.requestLoad.started.type, fetchPopular);
   yield takeEvery(BlogArticleActions.requestLoad.started.type, fetchItem);
   yield takeEvery(BlogArticleActions.requestRead.started.type, sendReadItem);
 }
