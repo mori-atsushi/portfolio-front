@@ -7,7 +7,7 @@ interface IProps {
 
 export default (props: IProps) => {
   const { date } = props;
-  const formatted = `${ date.getFullYear() }.${ date.getMonth() }.${ date.getDate() }`;
+  const formatted = `${ date.getFullYear() }.${ date.getMonth() + 1 }.${ date.getDate() }`;
 
   return (
     <Time>{ formatted }</Time>
