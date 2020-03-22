@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styledComponents from 'styled-components';
 
+import ExternalLink from 'src/components/atoms/links/ExternalLink';
 import profileJpg from '../../../statics/images/profile.jpg';
 import SnsList from '../../molecules/sns/SnsList';
 
@@ -16,14 +17,37 @@ export default () => (
           </Name>
           <Introduction>
             はじめまして。<br/>
-            筑波大学の学生で、写真が好きなエンジニアです。
+            写真が好きなエンジニアです。<br/>
+            android / ios / web等、フロントエンドを中心に開発しています。
           </Introduction>
           <Career>
-            <Date>1996</Date><Event>山口県生まれ</Event>
-            <Date>2012</Date><Event>明石高専 電気情報工学科 入学</Event>
-            <Date>2015</Date><Event>知的情報環境（新井イスマイル）研究室</Event>
-            <Date>2017</Date><Event>筑波大学 情報学群 情報メディア創成学類 編入学<br/>デジタルネイチャー（落合陽一）研究室</Event>
-            <Date>2019</Date><Event>株式会社サイバーエージェント エンジニア（予定）</Event>
+            <Date>1996</Date>
+            <Event>
+              山口県生まれ
+            </Event>
+
+            <Date>2012</Date>
+            <Event>
+              明石高専 電気情報工学科 入学
+            </Event>
+
+            <Date>2015</Date>
+            <Event>
+              知的情報環境（新井イスマイル）研究室
+            </Event>
+
+            <Date>2017</Date>
+            <Event>
+              筑波大学 情報学群 情報メディア創成学類 編入学<br/>
+              <ExternalLink href="https://digitalnature.slis.tsukuba.ac.jp/">デジタルネイチャー（落合陽一）研究室</ExternalLink>
+            </Event>
+
+            <Date>2019</Date>
+            <Event>
+              <ExternalLink href="https://www.cyberagent.co.jp/">株式会社サイバーエージェント</ExternalLink><br/>
+            	<ExternalLink href="https://cyber-z.co.jp/">株式会社 CyberZ</ExternalLink> エンジニア<br/>
+              2019年度 <ExternalLink href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html">未踏IT人材発掘・育成事業</ExternalLink> 採択
+            </Event>
           </Career>
         </Content>
       </Row>
