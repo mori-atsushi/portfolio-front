@@ -53,6 +53,7 @@ class BlogArticlePage extends React.Component<IProps> {
   public render(): JSX.Element {
     const article = this.props.blogArticle.article;
     const pageTitle = article ? `${ article.title } - ` : '';
+    const id = Number(this.props.match.params.id);
 
     return (
       <>
@@ -66,7 +67,10 @@ class BlogArticlePage extends React.Component<IProps> {
           backgroundImage={HeaderImg} />
         <Content>
           <BlogDetail { ...this.props.blogArticle } />
-          <PopularBlogList { ...this.props.popularBlogs } />
+          <PopularBlogList
+            currentId={id}
+            popularBlogs={this.props.popularBlogs }
+          />
         </Content>
       </>
     );
