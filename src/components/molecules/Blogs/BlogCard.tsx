@@ -9,7 +9,7 @@ import IBlog from 'src/entities/blog';
 
 export default (props: IBlog) => (
   <Wrapper to={ `/blog/${ props.id }` } >
-    <RatioBox width={16} height={9}>
+    <RatioBox width={40} height={21}>
       <Image src={ props.ogpImage } />
     </RatioBox>
     <Content>
@@ -24,8 +24,13 @@ export default (props: IBlog) => (
 const Wrapper = styled(Link)`
   display: block;
   background-color: #ffffff;
-  box-shadow:0px 2px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.18);
   border-radius: 10px;
+  transition: box-shadow 0.3s cubic-bezier(0.25,0.8,0.25,1);
+
+  :hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.1);
+  }
 `;
 
 const Image = styled.img`
