@@ -1,4 +1,4 @@
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/github-gist.css';
 import * as React from 'react';
 import Highlight from 'react-highlight';
 
