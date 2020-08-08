@@ -46,7 +46,7 @@ export default () => (
             <Event>
               <ExternalLink href="https://www.cyberagent.co.jp/">株式会社サイバーエージェント</ExternalLink><br/>
             	<ExternalLink href="https://cyber-z.co.jp/">株式会社 CyberZ</ExternalLink> エンジニア<br/>
-              2019年度 <ExternalLink href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html">未踏IT人材発掘・育成事業</ExternalLink> 採択
+              2019年度 <ExternalLink href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html">未踏IT人材発掘・育成事業</ExternalLink> スーパークリエータ 認定
             </Event>
           </Career>
         </Content>
