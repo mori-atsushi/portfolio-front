@@ -38,7 +38,7 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "deploy": "yarn build && aws s3 sync build/ s3://atsushi-portfolio --delete"
+    "deploy": "yarn build && aws s3 sync build/ s3://prerender-webbucket-1miad0l9rqz7t --delete"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
