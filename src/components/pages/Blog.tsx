@@ -40,10 +40,13 @@ class BlogPage extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
+    const page = getPage(this.props);
+    const title = page === 1 ? 'Blog' : `Blog(${page})`;
+
     return (
       <>
         <Helmet
-          pageTitle='Blog' />
+          pageTitle={title} />
         <MenuHeader />
         <Header
           title="Blog"
