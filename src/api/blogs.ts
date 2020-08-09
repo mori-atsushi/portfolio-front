@@ -5,8 +5,8 @@ import IBlog from 'src/entities/blog';
 import IBlogList from 'src/entities/blogList';
 import IBlogPagingList from 'src/entities/blogPagingList';
 
-export async function getList(): Promise<IBlogPagingList> {
-  return getRequest<IBlogPagingListResponsne>('/blog')
+export async function getList(page?: number): Promise<IBlogPagingList> {
+  return getRequest<IBlogPagingListResponsne>('/blog', { page })
   .then((result) => blogPagingListMapper(result));;
 }
 

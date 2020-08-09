@@ -4,8 +4,11 @@ import config from 'src/helper/config';
 
 const domain = config.apiUrl;
 
-export async function getRequest<T>(path: string): Promise<T> {
-  return axios.request<T>({ url: `${ domain }${ path }` })
+export async function getRequest<T>(path: string, params: any = null): Promise<T> {
+  return axios.request<T>({
+    params,
+    url: `${ domain }${ path }` ,
+  })
     .then((response) => response.data)
     .catch(err => {
       throw err;

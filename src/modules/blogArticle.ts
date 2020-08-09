@@ -15,7 +15,7 @@ enum ActionType {
 const actionCreator = typescriptFsa();
 
 export const BlogArticleActions = {
-  requestLoad: actionCreator.async<IFetchRequest, IFetchResult, void>(ActionType.REQUEST_LOAD),
+  requestLoad: actionCreator.async<IBlogArticleFetchRequest, IFetchResult, void>(ActionType.REQUEST_LOAD),
   requestRead: actionCreator.async<number, void, void>(ActionType.REQUEST_READ),
 }
 
@@ -25,7 +25,7 @@ export interface IBlogArticleState {
   article?: IBlog;
 }
 
-export interface IFetchRequest {
+export interface IBlogArticleFetchRequest {
   id: number;
 }
 

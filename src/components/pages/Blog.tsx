@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from "redux"
 import styled from 'styled-components';
 
@@ -11,23 +12,30 @@ import BlogList from 'src/components/organisms/Blogs/BlogList';
 import HeaderImg from 'src/statics/images/blog_header.jpg';
 
 import { IState } from 'src/modules';
-import { BlogActions, IBlogState } from 'src/modules/blogs';
+import { BlogActions, IBlogFetchRequest, IBlogState } from 'src/modules/blogs';
 
 interface IStateProps {
   blogs: IBlogState;
 }
 
 interface IActionProps {
-  requestLoad: () => void;
+  requestLoad: (request: IBlogFetchRequest) => void;
 }
 
-interface IProps extends IStateProps, IActionProps {
+interface IProps extends RouteComponentProps, IStateProps, IActionProps {
 }
 
 class BlogPage extends React.Component<IProps> {
   public componentDidMount() {
-    if(this.props.blogs.loadState === 'init') {
-      this.props.requestLoad();
+    const page = getPage(this.props);
+    this.props.requestLoad({ page });
+  }
+
+  public componentWillReceiveProps(nextProps: IProps) {
+    const currentPage = getPage(this.props)
+    const nextPage = getPage(nextProps)
+    if (currentPage !== nextPage) {
+      this.props.requestLoad({ page: nextPage });
     }
   }
 
@@ -53,6 +61,11 @@ class BlogPage extends React.Component<IProps> {
       </>
     );
   }
+}
+
+const getPage = (props: IProps): number => {
+  const param = new URLSearchParams(props.location.search).get("page")
+  return Number(param) || 1;
 }
 
 const mapStateToProps = (state: IState): IStateProps => {

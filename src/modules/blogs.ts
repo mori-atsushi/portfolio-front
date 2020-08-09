@@ -15,13 +15,17 @@ enum ActionType {
 const actionCreator = typescriptFsa();
 
 export const BlogActions = {
-  requestLoad: actionCreator.async<void, IBlogList, void>(ActionType.REQUEST_LOAD),
+  requestLoad: actionCreator.async<IBlogFetchRequest, IBlogList, void>(ActionType.REQUEST_LOAD),
 }
 
 // Reducer
 export interface IBlogState {
   loadState: LoadState;
   list?: IBlogPagingList;
+}
+
+export interface IBlogFetchRequest {
+  page?: number;
 }
 
 const initialState: IBlogState = {
@@ -34,7 +38,7 @@ const requestLoadHandler = (state: IBlogState): IBlogState => {
 
 const fetchSuccessHandler = (
   state: IBlogState,
-  payload: { params: void, result: IBlogPagingList }
+  payload: { params: IBlogFetchRequest, result: IBlogPagingList }
 ): IBlogState => {
   return {
     ...state,
