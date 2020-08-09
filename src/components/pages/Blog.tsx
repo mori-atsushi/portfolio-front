@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Helmet from 'src/components/atoms/helmets/Helmet';
 import Header from 'src/components/molecules/headers/Header';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
+import Pagination from 'src/components/molecules/pagination/Pagination';
 import BlogList from 'src/components/organisms/Blogs/BlogList';
 import HeaderImg from 'src/statics/images/blog_header.jpg';
 
@@ -43,6 +44,11 @@ class BlogPage extends React.Component<IProps> {
           <BlogList
             list={ this.props.blogs.list && this.props.blogs.list.list || [] }
             isLoading={ this.props.blogs.loadState === 'loading' } />
+          {
+            this.props.blogs.list && <Pagination
+              pageNum={ this.props.blogs.list.pageNum}
+              currentPage={ this.props.blogs.list.currentPage} />
+          }
         </Content>
       </>
     );
