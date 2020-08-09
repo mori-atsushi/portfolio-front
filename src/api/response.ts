@@ -1,7 +1,11 @@
 export interface IBlogListResponse {
-  nextToken?: string,
-  prevToken?: string,
   list?: IBlogResponse[],
+}
+
+export interface IBlogPagingListResponsne {
+  list?: IBlogResponse[],
+  currentPage: number,
+  pageNum: number,
 }
 
 export interface IBlogResponse {

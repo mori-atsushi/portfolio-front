@@ -1,8 +1,8 @@
 import typescriptFsa from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import IBlog from 'src/entities/blog';
 import IBlogList from 'src/entities/blogList';
+import IBlogPagingList from 'src/entities/blogPagingList';
 
 type LoadState = 'init' | 'loading' | 'error' | 'success';
 
@@ -21,11 +21,10 @@ export const BlogActions = {
 // Reducer
 export interface IBlogState {
   loadState: LoadState;
-  list: IBlog[];
+  list?: IBlogPagingList;
 }
 
 const initialState: IBlogState = {
-  list: [],
   loadState: 'init',
 }
 
@@ -35,11 +34,11 @@ const requestLoadHandler = (state: IBlogState): IBlogState => {
 
 const fetchSuccessHandler = (
   state: IBlogState,
-  payload: { params: void, result: {list: IBlog[]} }
+  payload: { params: void, result: IBlogPagingList }
 ): IBlogState => {
   return {
     ...state,
-    list: payload.result.list,
+    list: payload.result,
     loadState: 'success'
   };
 }

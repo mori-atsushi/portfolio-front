@@ -41,7 +41,7 @@ class BlogPage extends React.Component<IProps> {
           backgroundImage={HeaderImg} />
         <Content>
           <BlogList
-            list={ this.props.blogs.list }
+            list={ this.props.blogs.list && this.props.blogs.list.list || [] }
             isLoading={ this.props.blogs.loadState === 'loading' } />
         </Content>
       </>
