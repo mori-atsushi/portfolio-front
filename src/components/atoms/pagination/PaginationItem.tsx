@@ -15,7 +15,8 @@ export default (props: IProps) => (
 const Wrapper = styled.button<{isSelected: boolean}>`
   border: none;
   width: 36px;
-  height:36px;
+  height: 36px;
+  margin: 4px;
   display: inline-block;
   background-color: ${({isSelected}) => isSelected ? '#fbb03b' : '#333333'};
   color: #ffffff;

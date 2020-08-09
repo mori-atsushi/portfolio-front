@@ -23,5 +23,5 @@ export default (props: IProps) => (
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #FF0000;
+  margin-top: 2rem;
 `;
