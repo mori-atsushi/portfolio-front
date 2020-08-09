@@ -2,19 +2,21 @@ import { SagaIterator } from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 
 import * as api from 'src/api/blogs';
-import { BlogArticleActions, IFetchRequest } from 'src/modules/blogArticle';
-import { BlogActions } from 'src/modules/blogs';
+import { BlogArticleActions, IBlogArticleFetchRequest } from 'src/modules/blogArticle';
+import { BlogActions, IBlogFetchRequest } from 'src/modules/blogs';
 import { PopularBlogsActions } from 'src/modules/popularBlogs';
 
-function* fetchAll() {
+function* fetchAll(action: {type: string, payload: IBlogFetchRequest}) {
   try {
-    const response = yield api.getList();
+    const response = yield api.getList(action.payload.page);
     yield put(BlogActions.requestLoad.done({
+      params: action.payload,
       result: { ...response }
     }));
   } catch (err) {
     yield put(BlogActions.requestLoad.failed({
-      error: void 0
+      error: void 0,
+      params: action.payload,
     }));
   }
 }
@@ -32,7 +34,7 @@ function* fetchPopular() {
   }
 }
 
-function* fetchItem(action: {type: string, payload: IFetchRequest}) {
+function* fetchItem(action: {type: string, payload: IBlogArticleFetchRequest}) {
   try {
     const response = yield api.getItem(action.payload.id);
     yield put(BlogArticleActions.requestLoad.done({

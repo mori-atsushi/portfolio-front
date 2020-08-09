@@ -1,8 +1,8 @@
 import typescriptFsa from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import IBlog from 'src/entities/blog';
 import IBlogList from 'src/entities/blogList';
+import IBlogPagingList from 'src/entities/blogPagingList';
 
 type LoadState = 'init' | 'loading' | 'error' | 'success';
 
@@ -15,17 +15,20 @@ enum ActionType {
 const actionCreator = typescriptFsa();
 
 export const BlogActions = {
-  requestLoad: actionCreator.async<void, IBlogList, void>(ActionType.REQUEST_LOAD),
+  requestLoad: actionCreator.async<IBlogFetchRequest, IBlogList, void>(ActionType.REQUEST_LOAD),
 }
 
 // Reducer
 export interface IBlogState {
   loadState: LoadState;
-  list: IBlog[];
+  list?: IBlogPagingList;
+}
+
+export interface IBlogFetchRequest {
+  page?: number;
 }
 
 const initialState: IBlogState = {
-  list: [],
   loadState: 'init',
 }
 
@@ -35,11 +38,11 @@ const requestLoadHandler = (state: IBlogState): IBlogState => {
 
 const fetchSuccessHandler = (
   state: IBlogState,
-  payload: { params: void, result: {list: IBlog[]} }
+  payload: { params: IBlogFetchRequest, result: IBlogPagingList }
 ): IBlogState => {
   return {
     ...state,
-    list: payload.result.list,
+    list: payload.result,
     loadState: 'success'
   };
 }

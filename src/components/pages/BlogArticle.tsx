@@ -13,7 +13,7 @@ import PopularBlogList from 'src/components/organisms/Blogs/PopularBlogList';
 import HeaderImg from 'src/statics/images/blog_header.jpg';
 
 import { IState } from 'src/modules';
-import { BlogArticleActions, IBlogArticleState, IFetchRequest } from 'src/modules/blogArticle';
+import { BlogArticleActions, IBlogArticleFetchRequest, IBlogArticleState } from 'src/modules/blogArticle';
 import { IPopularBlogsState, PopularBlogsActions } from 'src/modules/popularBlogs';
 
 interface IStateProps {
@@ -22,7 +22,7 @@ interface IStateProps {
 }
 
 interface IActionProps {
-  requestLoad: (request: IFetchRequest) => void;
+  requestLoad: (request: IBlogArticleFetchRequest) => void;
   requestRead: (request: number) => void;
   requestPopularLoad: () => void;
 }
