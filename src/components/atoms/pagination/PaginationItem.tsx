@@ -1,24 +1,39 @@
+import * as history from 'history';
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
 interface IProps {
-  num: number,
-  isSelected: boolean,
+  page: number;
+  isSelected: boolean;
+  to: history.LocationDescriptor;
 }
 
-export default (props: IProps) => (
-  <Wrapper isSelected={props.isSelected} disabled={props.isSelected}>
-    { props.num }
-  </Wrapper>
-)
+export default (props: IProps) => {
+  if (props.isSelected) {
+    return (
+      <SelectedWrapper>
+        { props.page }
+      </SelectedWrapper>
+    )
+  }
+  return (
+    <Wrapper
+      to={props.to}>
+      { props.page }
+    </Wrapper>
+  )
+}
 
-const Wrapper = styled.button<{isSelected: boolean}>`
+const SelectedWrapper = styled.div`
   border: none;
   width: 36px;
   height: 36px;
   margin: 4px;
-  display: inline-block;
-  background-color: ${({isSelected}) => isSelected ? '#fbb03b' : '#333333'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fbb03b;
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: bold;
@@ -26,6 +41,10 @@ const Wrapper = styled.button<{isSelected: boolean}>`
   position: relative;
   overflow: hidden;
   z-index: 0;
+`
+
+const Wrapper = styled(SelectedWrapper.withComponent(Link))`
+  background-color: #333333;
 
   &::before {
     content: '';
