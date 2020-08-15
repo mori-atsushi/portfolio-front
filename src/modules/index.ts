@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux';
 import reduxLogger from 'redux-logger';
 import reduxSaga from 'redux-saga';
 
@@ -16,6 +16,10 @@ export interface IState {
 }
 
 const sagaMiddleware = reduxSaga();
+const middlewares: [Middleware] = [sagaMiddleware];
+if (process.env.NODE_ENV !== `production`) {
+  middlewares.push(reduxLogger);
+}
 
 export const store = createStore(
   combineReducers<IState>({
@@ -24,7 +28,7 @@ export const store = createStore(
     contact,
     popularBlogs,
   }),
-  applyMiddleware(sagaMiddleware, reduxLogger)
+  applyMiddleware(...middlewares)
 );
 
 sagaMiddleware.run(sagas);
