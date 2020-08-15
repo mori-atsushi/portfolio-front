@@ -28,14 +28,14 @@ interface IProps extends RouteComponentProps, IStateProps, IActionProps {
 class BlogPage extends React.Component<IProps> {
   public componentDidMount() {
     const page = getPage(this.props);
-    this.props.requestLoad({ page });
+    this.load(page);
   }
 
   public componentWillReceiveProps(nextProps: IProps) {
-    const currentPage = getPage(this.props)
-    const nextPage = getPage(nextProps)
+    const currentPage = getPage(this.props);
+    const nextPage = getPage(nextProps);
     if (currentPage !== nextPage) {
-      this.props.requestLoad({ page: nextPage });
+      this.load(nextPage);
     }
   }
 
@@ -63,6 +63,13 @@ class BlogPage extends React.Component<IProps> {
         </Content>
       </>
     );
+  }
+
+  private load(page: number) {
+    const blogList = this.props.blogs.list;
+    if (!blogList || blogList.currentPage !== page) {
+      this.props.requestLoad({ page });
+    }
   }
 }
 
