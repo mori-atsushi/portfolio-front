@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactGA from 'react-ga';
 import styledComponents from 'styled-components';
 
 interface IProps {
@@ -7,11 +8,11 @@ interface IProps {
 }
 
 export default (props: IProps) => (
-  <A href={props.href} target="_blank">
+  <A eventLabel={props.href} to={props.href} target="_blank">
     {props.children}
   </A>
 )
 
-const A = styledComponents.a`
+const A = styledComponents(ReactGA.OutboundLink)`
   text-decoration: underline;
 `;
