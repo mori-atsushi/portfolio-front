@@ -23,6 +23,7 @@ const renderItem = (page: number, currentPage: number) => {
 
   return (
     <PaginationItem
+      key = {page}
       page={ page }
       to={ to }
       isSelected={ (page) === currentPage} />
