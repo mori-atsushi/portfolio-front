@@ -11,7 +11,7 @@
     "@types/react-highlight": "^0.12.1",
     "@types/redux-logger": "^3.0.6",
     "autobind-decorator": "^2.4.0",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "github-markdown-css": "4.0.0",
     "highlight.js": "9.18.1",
     "history": "^4.7.2",
