@@ -2,6 +2,7 @@ import 'reset-css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import '../styles/index.css';
+import Footer from 'src/components/molecules/footers/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <script data-ad-client="ca-pub-5186505760792931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
       </Head>
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 };
