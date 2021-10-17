@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styledComponents from 'styled-components';
 
-import headerJpg from '../../../statics/images/header.jpg';
 import RatioBox from '../../atoms/boxs/RatioBox';
 
 export default () => (
@@ -22,7 +21,7 @@ export default () => (
 );
 
 const BackgroundImage = styledComponents.div`
-  background-image: url(${headerJpg});
+  background-image: url("images/header.jpg");
   background-size: cover;
   background-position: center;
   width: 100%;
