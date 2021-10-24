@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components';
 
 import Button from 'src/components/atoms/buttons/Button';
-import Date from 'src/components/atoms/dates/Date';
+import Date from 'src/components/atoms/dates/YYYYMMDD';
 import Paragraph from 'src/components/atoms/paragraphs/Paragraph';
 
 import IBlog from 'src/entities/blog';
