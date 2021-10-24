@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import styled from 'styled-components';
 
 import RatioBox from 'src/components/atoms/boxs/RatioBox';
@@ -8,7 +8,7 @@ import Date from 'src/components/atoms/dates/Date';
 import IBlog from 'src/entities/blog';
 
 export default (props: IBlog) => (
-  <Wrapper to={ `/blog/${ props.id }` } >
+  <Wrapper href={ `/blog/${ props.id }` } >
     <RatioBox width={40} height={21}>
       <Image src={ props.ogpImage } />
     </RatioBox>

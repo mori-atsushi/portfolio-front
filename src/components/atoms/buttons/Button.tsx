@@ -1,12 +1,11 @@
 import bind from 'autobind-decorator';
-import * as history from 'history';
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import styled from 'styled-components';
 
 interface IProps {
   children: string;
-  to?: history.LocationDescriptor;
+  to?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -15,8 +14,7 @@ export default class Button extends React.Component<IProps> {
     if(this.props.to) {
       return (
         <LinkButton
-          onClick={ this.handleButtonClick }
-          to={ this.props.to } >
+          href={ this.props.to } >
           { this.props.children }
         </LinkButton>
       );

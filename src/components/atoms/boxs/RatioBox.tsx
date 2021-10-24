@@ -14,7 +14,7 @@ interface IState {
 }
 
 export default class RatioBox extends React.Component<IProps, IState> {
-  private element: HTMLDivElement;
+  private element: HTMLDivElement | null = null;
 
   constructor(props: IProps) {
     super(props);
@@ -25,7 +25,7 @@ export default class RatioBox extends React.Component<IProps, IState> {
    * component did mount
    */
   public componentDidMount() {
-    this.setState({ clientWidth: this.element.clientWidth });
+    this.setState({ clientWidth: this.element?.clientWidth });
     window.addEventListener('resize', this.handleResize);
   }
 

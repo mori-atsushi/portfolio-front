@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 import styled from 'styled-components';
 
 import Button from 'src/components/atoms/buttons/Button';
@@ -16,13 +16,13 @@ export default (props: IBlog) => {
         <DateWrapper>
           <Date date={ props.releaseAt } />
         </DateWrapper>
-          <Title  to={ url }>{ props.title }</Title>
+          <Title href={ url }>{ props.title }</Title>
         <Description>
           <Paragraph>{ props.description }</Paragraph>
         </Description>
         <Button to={ url } >続きを読む</Button>
       </Content>
-      <ImageWrapper to={ url }>
+      <ImageWrapper href={ url }>
         <Image src={ props.ogpImage } />
       </ImageWrapper>
     </Wrapper>
