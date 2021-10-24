@@ -8,7 +8,7 @@ interface IProps {
   to: string;
 }
 
-export default (props: IProps) => {
+const PaginationItem = (props: IProps) => {
   if (props.isSelected) {
     return (
       <SelectedWrapper>
@@ -17,14 +17,17 @@ export default (props: IProps) => {
     )
   }
   return (
-    <Wrapper
-      href={props.to}>
-      { props.page }
-    </Wrapper>
+    <Link href={props.to} passHref>
+      <Wrapper>
+        { props.page }
+      </Wrapper>
+    </Link>
   )
 }
 
-const SelectedWrapper = styled.div`
+export default PaginationItem;
+
+const CommonWrapper = styled.div`
   border: none;
   width: 36px;
   height: 36px;
@@ -32,18 +35,21 @@ const SelectedWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fbb03b;
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: bold;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   z-index: 0;
-`
+`;
 
-const Wrapper = styled(SelectedWrapper.withComponent(Link))`
+const SelectedWrapper = styled(CommonWrapper.withComponent('div'))`
+  background-color: #fbb03b;
+`;
+
+const Wrapper = styled(CommonWrapper.withComponent('a'))`
   background-color: #333333;
+  cursor: pointer;
 
   &::before {
     content: '';

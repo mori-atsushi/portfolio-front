@@ -3,17 +3,12 @@ import { getList } from 'src/api/blogs';
 import CommonHead from 'src/components/atoms/common-head/CommonHead'
 import Header from 'src/components/molecules/headers/Header';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
+import Pagination from 'src/components/molecules/pagination/Pagination';
 import BlogList from 'src/components/organisms/Blogs/BlogList';
-import IBlogList from 'src/entities/blogList';
+import IBlogPagingList from 'src/entities/blogPagingList';
 import styled from 'styled-components';
 
-type Props = {
-  blogList: IBlogList
-}
-
-const Blog: NextPage<Props> = ({
-  blogList
-}) => {
+const Blog: NextPage<IBlogPagingList> = (props) => {
   return (
     <>
       <CommonHead
@@ -25,18 +20,19 @@ const Blog: NextPage<Props> = ({
           backgroundImage='/images/blog_header.jpg' />
       <Content>
         <BlogList
-          list={blogList.list}/>
+          list={props.list}/>
+        <Pagination
+            pageNum={ props.pageNum }
+            currentPage={ props.currentPage } />
       </Content>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<IBlogPagingList> = async () => {
   const blogList = await getList();
   return {
-    props: {
-      blogList
-    }
+    props: blogList
   }
 }
 
