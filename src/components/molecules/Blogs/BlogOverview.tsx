@@ -8,7 +8,7 @@ import Paragraph from 'src/components/atoms/paragraphs/Paragraph';
 
 import IBlog from 'src/entities/blog';
 
-export default (props: IBlog) => {
+const BlogOverview: React.FC<IBlog> = (props: IBlog) => {
   const url = `/blog/${ props.id }`
   return (
     <Wrapper>
@@ -16,18 +16,24 @@ export default (props: IBlog) => {
         <DateWrapper>
           <Date date={ props.releaseAt } />
         </DateWrapper>
-          <Title href={ url }>{ props.title }</Title>
+          <Link href={ url } passHref>
+            <Title>{ props.title }</Title>
+          </Link>
         <Description>
           <Paragraph>{ props.description }</Paragraph>
         </Description>
         <Button to={ url } >続きを読む</Button>
       </Content>
-      <ImageWrapper href={ url }>
-        <Image src={ props.ogpImage } />
-      </ImageWrapper>
+      <Link href={url} passHref>
+        <ImageWrapper href={ url }>
+          <Image src={ props.ogpImage } />
+        </ImageWrapper>
+      </Link>
     </Wrapper>
   )
 }
+
+export default BlogOverview;
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,7 +49,7 @@ const DateWrapper = styled.div`
   color: #666666;
 `;
 
-const Title = styled(Link)`
+const Title = styled.a`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -60,7 +66,7 @@ const Description = styled.div`
   margin-bottom: 2rem;
 `;
 
-const ImageWrapper = styled(Link)`
+const ImageWrapper = styled.a`
   width: 30%;
   min-width: 120px;
   transition: box-shadow 0.3s cubic-bezier(0.25,0.8,0.25,1);

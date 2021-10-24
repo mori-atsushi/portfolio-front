@@ -13,10 +13,13 @@ export default class Button extends React.Component<IProps> {
   public render(): JSX.Element {
     if(this.props.to) {
       return (
-        <LinkButton
-          href={ this.props.to } >
-          { this.props.children }
-        </LinkButton>
+        <Link
+          href={ this.props.to }
+          passHref>
+          <LinkButton>
+            { this.props.children }
+          </LinkButton>
+        </Link>
       );
     }
     return (
@@ -64,4 +67,4 @@ const DivButton = styled.button`
   }
 `;
 
-const LinkButton = DivButton.withComponent(Link);
+const LinkButton = DivButton.withComponent('a');
