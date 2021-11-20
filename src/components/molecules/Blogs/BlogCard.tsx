@@ -7,21 +7,23 @@ import Date from 'src/components/atoms/dates/YYYYMMDD';
 
 import IBlog from 'src/entities/blog';
 
-export default (props: IBlog) => (
-  <Wrapper href={ `/blog/${ props.id }` } >
-    <RatioBox width={40} height={21}>
-      <Image src={ props.ogpImage } />
-    </RatioBox>
-    <Content>
-      <DateWrapper>
-        <Date date={ props.releaseAt } />
-      </DateWrapper>
-      <Title>{ props.title }</Title>
-    </Content>
-  </Wrapper>
+const BlogCard: React.FC<IBlog> = (props) => (
+  <Link href={ `/blog/${ props.id }`} passHref>
+    <Wrapper>
+      <RatioBox width={40} height={21}>
+        <Image src={ props.ogpImage } />
+      </RatioBox>
+      <Content>
+        <DateWrapper>
+          <Date date={ props.releaseAt } />
+        </DateWrapper>
+        <Title>{ props.title }</Title>
+      </Content>
+    </Wrapper>
+  </Link>
 );
 
-const Wrapper = styled(Link)`
+const Wrapper = styled.div`
   display: block;
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.18);
@@ -54,3 +56,5 @@ const Title = styled.h3`
   font-weight: bold;
   line-height: 2rem;
 `;
+
+export default BlogCard

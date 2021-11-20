@@ -4,16 +4,18 @@ import styled from 'styled-components';
 import BlogCard from 'src/components/molecules/Blogs/BlogCard';
 
 import IBlog from 'src/entities/blog';
-import { IPopularBlogsState } from 'src/modules/popularBlogs';
 
 interface IProps {
-  currentId: number,
-  popularBlogs: IPopularBlogsState
+  current: IBlog,
+  popularBlogs: IBlog[]
 }
 
-const PopularBlogList: React.FC<IProps> = (props) => {
-  const list = props.popularBlogs.list
-    .filter(item => item.id !== props.currentId)
+const PopularBlogList: React.FC<IProps> = ({
+  current,
+  popularBlogs
+}) => {
+  const list = popularBlogs
+    .filter(item => item.id !== current.id)
     .slice(0, 6);
 
   return (
