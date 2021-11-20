@@ -2,6 +2,7 @@ import 'reset-css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import '../styles/index.css';
+import '../styles/markdown.css';
 import Footer from 'src/components/molecules/footers/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
