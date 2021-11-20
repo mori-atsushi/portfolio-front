@@ -21,7 +21,7 @@ const Pagination = (props: IProps) => (
 export default Pagination;
 
 const renderItem = (page: number, currentPage: number) => {
-  const to = page === 1 ? `blog` : `blog/list/${page}`
+  const to = page === 1 ? `/blog` : `/blog/list/${page}`
 
   return (
     <PaginationItem
