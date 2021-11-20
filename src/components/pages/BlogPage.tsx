@@ -12,11 +12,12 @@ const BlogPage: React.FC<IBlogPagingList> = ({
   currentPage,
 }) => {
   const title = currentPage === 1 ? 'Blog' : `Blog(${currentPage})`;
+  const path = currentPage === 1 ? `blogs` : `blogs/list/${currentPage}`
   return (
     <>
       <CommonHead
-        pageTitle='Blog'
-        path='blogs' />
+        pageTitle={title}
+        path={path} />
       <MenuHeader />
       <Header
           title='Blog'

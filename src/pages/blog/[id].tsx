@@ -24,12 +24,14 @@ const Blog: NextPage<BlogProps> = ({
   popularBlogs
 }) => {
   useRead(blog)
+  const pageTitle = `${ blog.title } - Blog`;
+  const path = `blogs/${ blog.id }`
 
   return (
     <>
       <CommonHead
-        pageTitle='Blog'
-        path='blogs' />
+        pageTitle={pageTitle}
+        path={path} />
       <MenuHeader />
       <Header
           title='Blog'
