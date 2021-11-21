@@ -4,6 +4,9 @@ import { IBlogListResponse, IBlogPagingListResponsne, IBlogResponse } from 'src/
 import IBlog from 'src/entities/blog';
 import IBlogList from 'src/entities/blogList';
 import IBlogPagingList from 'src/entities/blogPagingList';
+import { BlogCache } from './cache';
+
+const blogCache = new BlogCache()
 
 export async function getAllList(): Promise<IBlog[]> {
   let list: IBlog[] = []
@@ -17,18 +20,28 @@ export async function getAllList(): Promise<IBlog[]> {
 }
 
 export async function getList(page?: number): Promise<IBlogPagingList> {
-  return getRequest<IBlogPagingListResponsne>('/blog', { page })
-  .then((result) => blogPagingListMapper(result));;
+  const response = await getRequest<IBlogPagingListResponsne>('/blog', { page })
+  const list = blogPagingListMapper(response)
+  blogCache.setList(list.list)
+  return list
 }
 
 export async function getPopularList(): Promise<IBlogList> {
-  return getRequest<IBlogListResponse>('/blog/popular')
-    .then((result) => blogListMapper(result));
+  const response = await getRequest<IBlogListResponse>('/blog/popular')
+  const list = blogListMapper(response)
+  blogCache.setList(list.list)
+  return list
 }
 
 export async function getItem(id: number): Promise<IBlog> {
-  return getRequest<IBlogResponse>(`/blog/${ id }`)
-    .then((item) => blogMapper(item));
+  const cache = blogCache.get(id)
+  if (cache) {
+    return cache
+  }
+  const response = await getRequest<IBlogResponse>(`/blog/${ id }`)
+  const item = blogMapper(response)
+  blogCache.set(item)
+  return item
 }
 
 export async function sendRead(id: number): Promise<void> {
