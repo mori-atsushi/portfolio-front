@@ -1,4 +1,6 @@
-export default {
-  apiUrl: process.env.REACT_APP_API,
-  domain: process.env.REACT_APP_DOMAIN,
+const Config = {
+  apiUrl: process.env.NEXT_PUBLIC_API,
+  domain: process.env.NEXT_PUBLIC_DOMAIN,
 };
+
+export default Config;

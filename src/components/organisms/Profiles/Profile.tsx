@@ -2,7 +2,6 @@ import * as React from 'react';
 import styledComponents from 'styled-components';
 
 import ExternalLink from 'src/components/atoms/links/ExternalLink';
-import profileJpg from '../../../statics/images/profile.jpg';
 import SnsList from '../../molecules/sns/SnsList';
 
 export default () => (
@@ -117,7 +116,7 @@ const Event = styledComponents.dd`
 `;
 
 const Image = styledComponents.div`
-  background-image: url(${profileJpg});
+  background-image: url("/images/profile.jpg");
   background-size: cover;
   background-position: center;
   flex: 1 0 18rem;

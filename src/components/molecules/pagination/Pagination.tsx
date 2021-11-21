@@ -8,7 +8,7 @@ interface IProps {
   currentPage: number,
 }
 
-export default (props: IProps) => (
+const Pagination = (props: IProps) => (
   <Wrapper>
     {
       Array.from(Array(props.pageNum)).map( (_, i) =>
@@ -18,15 +18,17 @@ export default (props: IProps) => (
   </Wrapper>
 )
 
+export default Pagination;
+
 const renderItem = (page: number, currentPage: number) => {
-  const to = page === 1 ? `blog` : `blog?page=${page}`
+  const to = page === 1 ? `/blog` : `/blog/list/${page}`
 
   return (
     <PaginationItem
       key = {page}
       page={ page }
       to={ to }
-      isSelected={ (page) === currentPage} />
+      isSelected={ page === currentPage } />
   )
 }
 

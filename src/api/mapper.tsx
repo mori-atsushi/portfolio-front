@@ -18,7 +18,7 @@ export const blogMapper = (data: IBlogResponse): IBlog => ({
   description: data.description || '',
   id: data.id || 0,
   ogpImage: data.ogpImage,
-  releaseAt: new Date(data.releaseAt || ''),
+  releaseAt: data.releaseAt || '',
   title: data.title || '',
-  updatedAt: new Date(data.updatedAt || ''),
+  updatedAt: data.updatedAt || '',
 });

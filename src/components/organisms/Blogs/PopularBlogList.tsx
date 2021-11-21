@@ -4,16 +4,18 @@ import styled from 'styled-components';
 import BlogCard from 'src/components/molecules/Blogs/BlogCard';
 
 import IBlog from 'src/entities/blog';
-import { IPopularBlogsState } from 'src/modules/popularBlogs';
 
 interface IProps {
-  currentId: number,
-  popularBlogs: IPopularBlogsState
+  current: IBlog,
+  popularBlogs: IBlog[]
 }
 
-export default (props: IProps) => {
-  const list = props.popularBlogs.list
-    .filter(item => item.id !== props.currentId)
+const PopularBlogList: React.FC<IProps> = ({
+  current,
+  popularBlogs
+}) => {
+  const list = popularBlogs
+    .filter(item => item.id !== current.id)
     .slice(0, 6);
 
   return (
@@ -43,3 +45,5 @@ const Title = styled.h2`
   font-size: 2rem;
   font-weight: bold;
 `;
+
+export default PopularBlogList

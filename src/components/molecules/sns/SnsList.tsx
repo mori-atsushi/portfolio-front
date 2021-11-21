@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactGA from 'react-ga';
 import styledComponents from 'styled-components';
 
-export default () => (
+const SnsList: React.FC = () => (
   <Container>
     <Item>
       <Link eventLabel="https://twitter.com/at_sushi_at" to="https://twitter.com/at_sushi_at" target="_blank">
@@ -35,11 +35,14 @@ const Container = styledComponents.ul`
 `;
 
 const Item = styledComponents.li`
-  font-size: 3rem;
   margin: 0 1.5rem;
 `;
 
 const Link = styledComponents(ReactGA.OutboundLink)`
   display: block;
   color: inherit;
+  width: 3rem;
+  height: 3rem;
 `;
+
+export default SnsList;

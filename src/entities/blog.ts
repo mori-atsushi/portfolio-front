@@ -4,6 +4,6 @@ export default interface IBlog {
   description: string,
   content: string,
   ogpImage?: string,
-  releaseAt: Date,
-  updatedAt: Date,
+  releaseAt: string,
+  updatedAt: string,
 }
