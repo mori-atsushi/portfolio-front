@@ -4,9 +4,10 @@ import { IBlogListResponse, IBlogPagingListResponsne, IBlogResponse } from 'src/
 import IBlog from 'src/entities/blog';
 import IBlogList from 'src/entities/blogList';
 import IBlogPagingList from 'src/entities/blogPagingList';
-import { BlogCache } from './cache';
+import { BlogCache, BlogListCache } from './cache';
 
 const blogCache = new BlogCache()
+const blogListCache = new BlogListCache()
 
 export async function getAllList(): Promise<IBlog[]> {
   let list: IBlog[] = []
@@ -20,9 +21,15 @@ export async function getAllList(): Promise<IBlog[]> {
 }
 
 export async function getList(page?: number): Promise<IBlogPagingList> {
+  const _page = page ?? 0
+  const cache = blogListCache.get(_page)
+  if (cache) {
+    return cache
+  }
   const response = await getRequest<IBlogPagingListResponsne>('/blog', { page })
   const list = blogPagingListMapper(response)
   blogCache.setList(list.list)
+  blogListCache.set(_page, list)
   return list
 }
 

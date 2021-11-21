@@ -1,4 +1,5 @@
 import IBlog from 'src/entities/blog';
+import IBlogPagingList from 'src/entities/blogPagingList';
 
 export class BlogCache {
   private map = new Map<number, IBlog>()
@@ -15,5 +16,17 @@ export class BlogCache {
 
   get(id: number): IBlog | undefined {
     return this.map.get(id)
+  }
+}
+
+export class BlogListCache {
+  private map = new Map<number, IBlogPagingList>()
+
+  set(page: number, list: IBlogPagingList) {
+    this.map.set(page, list)
+  }
+
+  get(page: number): IBlogPagingList | undefined {
+    return this.map.get(page)
   }
 }
