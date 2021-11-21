@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import Button from 'src/components/atoms/buttons/Button';
 import TextArea from 'src/components/atoms/forms/TextArea';
 import TextInput from 'src/components/atoms/forms/TextInput';
@@ -8,29 +7,12 @@ import styled from 'styled-components';
 const ContactFrom: React.FC = () => {
   const {
     request,
-    state,
     errorMessage,
-    onChange,
+    onChangeName,
+    onChangeEmail,
+    onChangeMessage,
     onSubmit
   } = useContact()
-  const handleNameChange = useCallback((name: string) => {
-    onChange({
-      ...request,
-      name,
-    })
-  }, [state, onChange])
-  const handleEmailChange = useCallback((email: string) => {
-    onChange({
-      ...request,
-      email,
-    })
-  }, [state, onChange])
-  const handleMessageChange = useCallback((message: string) => {
-    onChange({
-      ...request,
-      message,
-    })
-  }, [state, onChange])
   return (
     <Form>
       <Row>
@@ -39,20 +21,20 @@ const ContactFrom: React.FC = () => {
           type='text'
           name='name'
           value={ request.name }
-          onChange={ handleNameChange }
+          onChange={ onChangeName }
           required={ true } />
         <TextInput
           label='メールアドレス'
           type='email'
           name='email'
           value={ request.email }
-          onChange={ handleEmailChange }
+          onChange={ onChangeEmail }
           required={ true } />
       </Row>
       <Wide>
         <TextArea
           value={ request.message }
-          onChange={ handleMessageChange }
+          onChange={ onChangeMessage }
           label='内容' />
       </Wide>
       <Submit>
