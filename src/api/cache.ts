@@ -1,4 +1,5 @@
 import IBlog from 'src/entities/blog';
+import IBlogList from 'src/entities/blogList';
 import IBlogPagingList from 'src/entities/blogPagingList';
 
 export class BlogCache {
@@ -28,5 +29,17 @@ export class BlogListCache {
 
   get(page: number): IBlogPagingList | undefined {
     return this.map.get(page)
+  }
+}
+
+export class PopularBlogCache {
+  private cache: IBlogList | undefined = undefined
+
+  set(list: IBlogList) {
+    this.cache = list
+  }
+
+  get(): IBlogList | undefined {
+    return this.cache
   }
 }
