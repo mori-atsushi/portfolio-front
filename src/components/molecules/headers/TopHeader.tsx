@@ -3,7 +3,7 @@ import styledComponents from 'styled-components';
 
 import RatioBox from '../../atoms/boxs/RatioBox';
 
-export default () => (
+const TopHeader = () => (
   <RatioBox width={2} height={1}>
     <BackgroundImage>
       <Container>
@@ -21,7 +21,7 @@ export default () => (
 );
 
 const BackgroundImage = styledComponents.div`
-  background-image: url("images/header.jpg");
+  background-image: url("/images/header.jpg");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -70,3 +70,5 @@ const Line = styledComponents.p`
     font-size: 3rem;
   }
 `;
+
+export default TopHeader;
