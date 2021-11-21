@@ -31,7 +31,9 @@ const Blog: NextPage<BlogProps> = ({
     <>
       <CommonHead
         pageTitle={pageTitle}
-        path={path} />
+        path={path}
+        ogpImage={ blog.ogpImage }
+        description={ blog.description }  />
       <MenuHeader />
       <Header
           title='Blog'
