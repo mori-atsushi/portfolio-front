@@ -9,7 +9,7 @@ import Paragraph from 'src/components/atoms/paragraphs/Paragraph';
 import IBlog from 'src/entities/blog';
 
 const BlogOverview: React.FC<IBlog> = (props: IBlog) => {
-  const url = `/blog/${ props.id }`
+  const url = `/blog/${ props.id }/`
   return (
     <Wrapper>
       <Content>

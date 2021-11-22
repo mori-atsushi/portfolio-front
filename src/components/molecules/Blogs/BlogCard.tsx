@@ -8,7 +8,7 @@ import Date from 'src/components/atoms/dates/YYYYMMDD';
 import IBlog from 'src/entities/blog';
 
 const BlogCard: React.FC<IBlog> = (props) => (
-  <Link href={ `/blog/${ props.id }`} passHref>
+  <Link href={ `/blog/${ props.id }/`} passHref>
     <Wrapper>
       <RatioBox width={40} height={21}>
         <Image src={ props.ogpImage } />

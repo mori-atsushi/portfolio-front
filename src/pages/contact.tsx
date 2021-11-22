@@ -10,7 +10,7 @@ const Contact: NextPage = () => {
     <>
       <CommonHead
         pageTitle='Contact'
-        path="contact" />
+        path='contact/' />
       <MenuHeader />
       <Header
           title='Contact'

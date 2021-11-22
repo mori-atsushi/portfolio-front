@@ -25,7 +25,7 @@ const Blog: NextPage<BlogProps> = ({
 }) => {
   useRead(blog)
   const pageTitle = `${ blog.title } - Blog`;
-  const path = `blogs/${ blog.id }`
+  const path = `blog/${ blog.id }/`
 
   return (
     <>
