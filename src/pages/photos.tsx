@@ -7,7 +7,7 @@ const Photos: NextPage = () => {
     <>
       <CommonHead
         pageTitle='Photos(Coming Soon)'
-        path="photos" />
+        path='photos/' />
       <ComingSoon />
     </>
   );

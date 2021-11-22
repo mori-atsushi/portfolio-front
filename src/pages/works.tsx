@@ -7,7 +7,7 @@ const Works: NextPage = () => {
     <>
       <CommonHead
         pageTitle='Works(Coming Soon)'
-        path="works" />
+        path='works/' />
       <ComingSoon />
     </>
   );

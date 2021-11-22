@@ -2,13 +2,13 @@ import * as React from 'react';
 import Link from 'next/link'
 import styledComponents from 'styled-components';
 
-export default () => (
+const Menu: React.FC = () => (
   <Container>
     <Item><Link href='/'>Top</Link></Item>
-    <Item><Link href='/works'>Works</Link></Item>
-    <Item><Link href='/photos'>Photos</Link></Item>
-    <Item><Link href='/blog'>Blog</Link></Item>
-    <Item><Link href='/contact'>Contact</Link></Item>
+    <Item><Link href='/works/'>Works</Link></Item>
+    <Item><Link href='/photos/'>Photos</Link></Item>
+    <Item><Link href='/blog/'>Blog</Link></Item>
+    <Item><Link href='/contact/'>Contact</Link></Item>
   </Container>
 );
 
@@ -30,3 +30,5 @@ const Item = styledComponents.li`
     text-decoration: underline;
   }
 `;
+
+export default Menu
