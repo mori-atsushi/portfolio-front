@@ -7,6 +7,7 @@ import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 import BlogDetail from 'src/components/organisms/Blogs/BlogDetail';
 import PopularBlogList from 'src/components/organisms/Blogs/PopularBlogList';
 import IBlog from 'src/entities/blog';
+import { generateRss } from 'src/helper/rss';
 import { useRead } from 'src/hooks/useRead';
 import styled from 'styled-components';
 
@@ -49,7 +50,8 @@ const Blog: NextPage<BlogProps> = ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const list = await getAllList();
+  const list = await getAllList()
+  generateRss(list)
   return {
     paths: list.map((page) => ({
       params: { id: page.id.toString() }
