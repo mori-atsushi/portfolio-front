@@ -42,6 +42,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   flex: 1;
+  min-width: 0%;
   margin-right: 0.5rem;
 `;
 
@@ -55,6 +56,8 @@ const Title = styled.a`
   margin-bottom: 0.5rem;
   line-height: 3rem;
   transition: opacity 0.3s;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   :hover {
     opacity: 0.7;
