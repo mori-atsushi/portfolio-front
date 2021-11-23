@@ -5,8 +5,11 @@ import '../styles/index.css';
 import '../styles/markdown.css';
 import Footer from 'src/components/molecules/footers/Footer';
 import GTag from 'src/components/tools/GTag';
+import { useClearServiceWorker } from 'src/hooks/useClearServiceWorker';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // create-react-app 時代のservice workerを削除する
+  useClearServiceWorker()
   return (
     <>
       <Head>
