@@ -5,3 +5,12 @@ export const pageview = (url: string) => {
     page_path: url,
   });
 }
+
+export const outbound = (url: String, callback?: () => void) => {
+  window.gtag('event', 'click', {
+    'event_category': 'outbound',
+    'event_label': url,
+    'transport_type': 'beacon',
+    'event_callback': callback
+  })
+}

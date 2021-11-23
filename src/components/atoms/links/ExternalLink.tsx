@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as ReactGA from 'react-ga';
+import { useCallback } from 'react';
+import { outbound } from 'src/helper/gtag';
 import styledComponents from 'styled-components';
 
 interface IProps {
@@ -7,12 +7,22 @@ interface IProps {
   children: string;
 }
 
-export default (props: IProps) => (
-  <A eventLabel={props.href} to={props.href} target="_blank">
-    {props.children}
-  </A>
-)
+const ExternalLink: React.FC<IProps> = ({
+  href,
+  children
+}) => {
+  const onClick = useCallback(() => {
+    outbound(href)
+  }, [href])
+  return (
+    <A onClick={onClick} href={href} target='_blank' rel='noreferrer'>
+      {children}
+    </A>
+  )
+}
 
-const A = styledComponents(ReactGA.OutboundLink)`
+const A = styledComponents.a`
   text-decoration: underline;
-`;
+`
+
+export default ExternalLink;

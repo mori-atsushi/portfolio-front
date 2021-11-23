@@ -1,13 +1,23 @@
-import * as React from 'react';
-import * as ReactGA from 'react-ga';
+import { useCallback } from 'react';
+import { outbound } from 'src/helper/gtag';
 
 interface IProps {
   href: string;
   children: string;
 }
 
-export default (props: IProps) => (
-  <ReactGA.OutboundLink eventLabel={props.href} to={props.href} target="_blank">
-    {props.children}
-  </ReactGA.OutboundLink>
-)
+const Link: React.FC<IProps> = ({
+  href,
+  children
+}) => {
+  const onClick = useCallback(() => {
+    outbound(href)
+  }, [href])
+  return (
+    <a onClick={onClick} href={href} target='_blank' rel='noreferrer'>
+      {children}
+    </a>
+  )
+}
+
+export default Link;
