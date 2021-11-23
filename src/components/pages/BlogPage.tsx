@@ -25,7 +25,7 @@ const BlogPage: React.FC<IBlogPagingList> = ({
         <link
           rel='alternate'
           type='application/rss+xml'
-          title='森 篤史のブログ'
+          title='Mori Atsushiのブログ'
           href={`${Config.domain}${Url.blog.feed}`} />
       </Head>
       <MenuHeader />
