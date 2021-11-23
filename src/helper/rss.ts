@@ -22,5 +22,5 @@ export const generateRss = async (blogs: IBlog[]) => {
     })
   })
   await promises.mkdir('public/blog', { recursive: true })
-  await promises.writeFile('public/blog/feed', feed.xml())
+  await promises.writeFile(`public${Url.blog.feed}`, feed.xml())
 }
