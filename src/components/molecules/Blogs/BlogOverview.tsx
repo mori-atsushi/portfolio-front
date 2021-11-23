@@ -26,7 +26,7 @@ const BlogOverview: React.FC<IBlog> = (props: IBlog) => {
       </Content>
       <Link href={url} passHref>
         <ImageWrapper href={ url }>
-          <Image src={ props.ogpImage } />
+          <Image src={ props.ogpImage } alt='' width='1200' height='630' />
         </ImageWrapper>
       </Link>
     </Wrapper>
@@ -77,5 +77,7 @@ const ImageWrapper = styled.a`
 `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
+  height: auto;
 `;
