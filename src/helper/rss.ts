@@ -7,7 +7,7 @@ import Url from 'src/helper/url';
 export const generateRss = async (blogs: IBlog[]) => {
   const feed = new RSS({
     title: 'Blog - Mori Atsushi',
-    description: '森 篤史のブログ',
+    description: 'Mori Atsushiのブログ',
     site_url: `${Config.domain}${Url.blog.list}`,
     feed_url: `${Config.domain}${Url.blog.feed}`,
     image_url: `${Config.domain}${Url.images.favicon}`,
