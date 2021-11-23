@@ -1,13 +1,14 @@
 import { useCallback } from 'react';
 import { outbound } from 'src/helper/gtag';
-import styledComponents from 'styled-components';
 
 interface IProps {
+  className?: string;
   href: string;
-  children: string;
+  children: React.ReactNode;
 }
 
 const ExternalLink: React.FC<IProps> = ({
+  className,
   href,
   children
 }) => {
@@ -15,14 +16,15 @@ const ExternalLink: React.FC<IProps> = ({
     outbound(href)
   }, [href])
   return (
-    <A onClick={onClick} href={href} target='_blank' rel='noreferrer'>
+    <a
+      className={className}
+      onClick={onClick}
+      href={href}
+      target='_blank'
+      rel='noreferrer'>
       {children}
-    </A>
+    </a>
   )
 }
-
-const A = styledComponents.a`
-  text-decoration: underline;
-`
 
 export default ExternalLink;

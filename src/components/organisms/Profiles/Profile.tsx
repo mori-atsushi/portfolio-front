@@ -4,7 +4,7 @@ import styledComponents from 'styled-components';
 import ExternalLink from 'src/components/atoms/links/ExternalLink';
 import SnsList from '../../molecules/sns/SnsList';
 
-export default () => (
+const Profile: React.FC = () => (
   <Wrapper>
     <Container>
       <Row>
@@ -38,14 +38,14 @@ export default () => (
             <Date>2017</Date>
             <Event>
               筑波大学 情報学群 情報メディア創成学類 編入学<br/>
-              <ExternalLink href="https://digitalnature.slis.tsukuba.ac.jp/">デジタルネイチャー（落合陽一）研究室</ExternalLink>
+              <Link href="https://digitalnature.slis.tsukuba.ac.jp/">デジタルネイチャー（落合陽一）研究室</Link>
             </Event>
 
             <Date>2019</Date>
             <Event>
-              <ExternalLink href="https://www.cyberagent.co.jp/">株式会社サイバーエージェント</ExternalLink><br/>
-            	<ExternalLink href="https://cyber-z.co.jp/">株式会社 CyberZ</ExternalLink> エンジニア<br/>
-              2019年度 <ExternalLink href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html">未踏IT人材発掘・育成事業</ExternalLink> スーパークリエータ 認定
+              <Link href="https://www.cyberagent.co.jp/">株式会社サイバーエージェント</Link><br/>
+            	<Link href="https://cyber-z.co.jp/">株式会社 CyberZ</Link> エンジニア<br/>
+              2019年度 <Link href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html">未踏IT人材発掘・育成事業</Link> スーパークリエータ 認定
             </Event>
           </Career>
         </Content>
@@ -107,6 +107,10 @@ const Career = styledComponents.dl`
   line-height: 1.5rem;
 `;
 
+const Link = styledComponents(ExternalLink)`
+  text-decoration: underline;
+`;
+
 const Date = styledComponents.dt`
   float: left;
 `;
@@ -124,3 +128,5 @@ const Image = styledComponents.div`
   border-radius: 1rem;
   margin-bottom: 2rem;
 `;
+
+export default Profile;
