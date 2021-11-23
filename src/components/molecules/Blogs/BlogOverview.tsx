@@ -26,7 +26,7 @@ const BlogOverview: React.FC<IBlog> = (props: IBlog) => {
       </Content>
       <Link href={url} passHref>
         <ImageWrapper href={ url }>
-          <Image src={ props.ogpImage } />
+          <Image src={ props.ogpImage } alt='' width='1200' height='630' />
         </ImageWrapper>
       </Link>
     </Wrapper>
@@ -42,6 +42,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   flex: 1;
+  min-width: 0%;
   margin-right: 0.5rem;
 `;
 
@@ -55,6 +56,8 @@ const Title = styled.a`
   margin-bottom: 0.5rem;
   line-height: 3rem;
   transition: opacity 0.3s;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   :hover {
     opacity: 0.7;
@@ -77,5 +80,7 @@ const ImageWrapper = styled.a`
 `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
+  height: auto;
 `;

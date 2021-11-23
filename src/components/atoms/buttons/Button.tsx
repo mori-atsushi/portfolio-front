@@ -1,6 +1,5 @@
-import bind from 'autobind-decorator';
-import * as React from 'react';
 import Link from 'next/link'
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
 interface IProps {
@@ -9,32 +8,31 @@ interface IProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export default class Button extends React.Component<IProps> {
-  public render(): JSX.Element {
-    if(this.props.to) {
-      return (
-        <Link
-          href={ this.props.to }
-          passHref>
-          <LinkButton>
-            { this.props.children }
-          </LinkButton>
-        </Link>
-      );
-    }
+const Button: React.FC<IProps> = ({
+  children,
+  to,
+  onClick
+}) => {
+  const _onClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    onClick && onClick(e)
+  }, [onClick])
+
+  if (to) {
     return (
-      <DivButton onClick={ this.handleButtonClick }>
-        { this.props.children }
-      </DivButton>
+      <Link
+        href={ to }
+        passHref>
+        <LinkButton>
+          { children }
+        </LinkButton>
+      </Link>
     );
   }
-
-  @bind
-  private handleButtonClick(e: React.MouseEvent<HTMLElement>) {
-    if(this.props.onClick) {
-      this.props.onClick(e);
-    }
-  }
+  return (
+    <DivButton onClick={ _onClick }>
+      { children }
+    </DivButton>
+  );
 }
 
 const DivButton = styled.button`
@@ -68,3 +66,5 @@ const DivButton = styled.button`
 `;
 
 const LinkButton = DivButton.withComponent('a');
+
+export default Button

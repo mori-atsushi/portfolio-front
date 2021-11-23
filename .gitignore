@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 # generated feed
-public/*/feed
+public/*/feed.xml

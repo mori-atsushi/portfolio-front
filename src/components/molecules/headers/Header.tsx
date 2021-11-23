@@ -8,7 +8,7 @@ interface IProps {
   backgroundImage: string;
 }
 
-export default (props: IProps) => (
+const Header: React.FC<IProps> = (props) => (
   <RatioBox width={12} height={5} maxHeight={300}>
     <BackgroundImage style={ { backgroundImage: `url(${props.backgroundImage})` } }>
       <Container>{ props.title }</Container>
@@ -36,3 +36,5 @@ const Container = styled.div`
   align-items: center;
   font-size: 4rem;
 `;
+
+export default Header;

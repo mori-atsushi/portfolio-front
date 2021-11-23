@@ -23,6 +23,7 @@ const Markdown: React.FC<IProps> = (props) => (
 
 const MyReactMarkdown = styled(ReactMarkdown)`
   background-color: transparent;
+  overflow-x: hidden;
 `
 
 export default Markdown

@@ -1,18 +1,13 @@
 import * as React from 'react';
 import Link from 'next/link'
 import styled from 'styled-components';
-
-import RatioBox from 'src/components/atoms/boxs/RatioBox';
 import Date from 'src/components/atoms/dates/YYYYMMDD';
-
 import IBlog from 'src/entities/blog';
 
 const BlogCard: React.FC<IBlog> = (props) => (
   <Link href={ `/blog/${ props.id }/`} passHref>
     <Wrapper>
-      <RatioBox width={40} height={21}>
-        <Image src={ props.ogpImage } />
-      </RatioBox>
+      <Image src={ props.ogpImage } alt='' width='1200' height='630' />
       <Content>
         <DateWrapper>
           <Date date={ props.releaseAt } />
@@ -36,8 +31,9 @@ const Wrapper = styled.div`
 `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 `;
