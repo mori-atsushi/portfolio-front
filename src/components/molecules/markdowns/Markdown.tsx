@@ -1,8 +1,8 @@
 import 'github-markdown-css/github-markdown-light.css';
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
+import ExternalLink from 'src/components/atoms/links/ExternalLink';
 import CodeBlock from 'src/components/atoms/markdowns/CodeBlock';
-import Link from 'src/components/atoms/markdowns/Link';
 import styled from 'styled-components';
 
 interface IProps {
@@ -15,7 +15,7 @@ const Markdown: React.FC<IProps> = (props) => (
     escapeHtml={ false }
     renderers={{
       code: CodeBlock,
-      link: Link
+      link: ExternalLink
     }} >
     { props.children }
   </MyReactMarkdown>

@@ -1,18 +1,30 @@
-import * as React from 'react';
-import * as ReactGA from 'react-ga';
-import styledComponents from 'styled-components';
+import { useCallback } from 'react';
+import { outbound } from 'src/helper/gtag';
 
 interface IProps {
+  className?: string;
   href: string;
-  children: string;
+  children: React.ReactNode;
 }
 
-export default (props: IProps) => (
-  <A eventLabel={props.href} to={props.href} target="_blank">
-    {props.children}
-  </A>
-)
+const ExternalLink: React.FC<IProps> = ({
+  className,
+  href,
+  children
+}) => {
+  const onClick = useCallback(() => {
+    outbound(href)
+  }, [href])
+  return (
+    <a
+      className={className}
+      onClick={onClick}
+      href={href}
+      target='_blank'
+      rel='noreferrer'>
+      {children}
+    </a>
+  )
+}
 
-const A = styledComponents(ReactGA.OutboundLink)`
-  text-decoration: underline;
-`;
+export default ExternalLink;

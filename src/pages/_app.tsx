@@ -4,6 +4,7 @@ import Head from 'next/head';
 import '../styles/index.css';
 import '../styles/markdown.css';
 import Footer from 'src/components/molecules/footers/Footer';
+import GTag from 'src/components/tools/GTag';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="fb:app_id" content="344770009435942" />
         <script data-ad-client="ca-pub-5186505760792931" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
       </Head>
+      <GTag />
       <Component {...pageProps} />
       <Footer />
     </>
