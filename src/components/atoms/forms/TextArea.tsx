@@ -9,7 +9,7 @@ interface IProps {
   onChange?: (value: string) => void;
 }
 
-export default (props: IProps) => {
+const TextArea = (props: IProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(props.onChange) {
       props.onChange(e.target.value);
@@ -34,3 +34,5 @@ const Input = styled.textarea`
   border-radius: 5px;
   font-size: 1rem;
 `;
+
+export default TextArea;

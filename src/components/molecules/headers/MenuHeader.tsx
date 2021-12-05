@@ -3,7 +3,7 @@ import styledComponents from 'styled-components';
 
 import Menu from '../../atoms/menus/Menu';
 
-export default () => (
+const MenuHeader: React.FC =() => (
   <Container>
     <Title>Mori Atsushi</Title>
     <MenuWrapper><Menu /></MenuWrapper>
@@ -32,3 +32,5 @@ const Title = styledComponents.h1`
 const MenuWrapper = styledComponents.div`
   padding: 0.25rem 0;
 `;
+
+export default MenuHeader;

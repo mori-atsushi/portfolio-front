@@ -12,7 +12,7 @@ interface IProps {
   onChange?: (value: string) => void;
 }
 
-export default (props: IProps) => {
+const TextInput = (props: IProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) {
       props.onChange(e.target.value);
@@ -39,3 +39,5 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 1rem;
 `;
+
+export default TextInput;

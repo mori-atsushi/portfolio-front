@@ -4,7 +4,7 @@ interface IProps {
   children: string
 }
 
-export default (props: IProps) => (
+const Paragraph: React.FC<IProps> = (props) => (
   <div>
     {
       props.children.split("\n").map((line: string, index: number) =>
@@ -13,3 +13,5 @@ export default (props: IProps) => (
     }
   </div>
 );
+
+export default Paragraph;

@@ -4,7 +4,7 @@ import styledComponents from 'styled-components';
 import WithEmojiMessage from 'src/components/atoms/messages/WithEmojiMessage';
 import MenuHeader from 'src/components/molecules/headers/MenuHeader';
 
-export default () => (
+const ComingSoon: React.FC = () => (
   <>
     <MenuHeader />
     <Wrapper>
@@ -22,3 +22,5 @@ const Wrapper = styledComponents.div`
   align-items: center;
   justify-content: center;
 `;
+
+export default ComingSoon;

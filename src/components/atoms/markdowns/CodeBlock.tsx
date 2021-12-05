@@ -7,8 +7,10 @@ interface IProps {
   language?: string
 }
 
-export default (props: IProps) => (
+const CodeBlock = (props: IProps) => (
   <Highlight className={ props.language || '' }>
     {props.value}
   </Highlight>
 );
+
+export default CodeBlock;
