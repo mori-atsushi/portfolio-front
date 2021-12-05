@@ -52,7 +52,7 @@ const Profile: React.FC = () => (
       </Row>
       <SnsList/>
     </Container>
-    <Image />
+    <ProfileImage />
   </Wrapper>
 );
 
@@ -119,7 +119,7 @@ const Event = styledComponents.dd`
   margin-left: 3rem;
 `;
 
-const Image = styledComponents.div`
+const ProfileImage = styledComponents.div`
   background-image: url("/images/profile.jpg");
   background-size: cover;
   background-position: center;

@@ -3,7 +3,7 @@ import styledComponents from 'styled-components';
 
 import Menu from '../../atoms/menus/Menu';
 
-export default () => (
+const Footer: React.FC = () => (
   <Container>
     <Name>Mori Atsushi</Name>
     <MenuContainer><Menu /></MenuContainer>
@@ -26,3 +26,5 @@ const MenuContainer = styledComponents.div`
   display: flex;
   justify-content: center;
 `;
+
+export default Footer;

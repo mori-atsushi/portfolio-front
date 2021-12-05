@@ -6,7 +6,7 @@ interface IProps {
   children: string;
 }
 
-export default (props: IProps) => (
+const WithEmojiMessage: React.FC<IProps> = (props) => (
   <Message>
     <Emoji>{ props.emoji }</Emoji>
     <Text>{ props.children }</Text>
@@ -27,3 +27,5 @@ const Emoji = styledComponents.div`
 const Text = styledComponents.div`
   text-align: center;
 `;
+
+export default WithEmojiMessage;

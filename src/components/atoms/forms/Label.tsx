@@ -6,9 +6,9 @@ interface IProps {
   children?: JSX.Element;
 }
 
-export default (props: IProps) => (
+const Label = (props: IProps) => (
   <Wrapper>
-    <Label>{ props.label }</Label>
+    <Content>{ props.label }</Content>
     { props.children }
   </Wrapper>
 );
@@ -19,6 +19,8 @@ const Wrapper = styled.label`
   align-items: center;
 `;
 
-const Label = styled.div`
+const Content = styled.div`
   flex-basis: 8rem;
 `;
+
+export default Label;
