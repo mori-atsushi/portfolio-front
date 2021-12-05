@@ -27,6 +27,7 @@ const Container = styledComponents.div<{
   position: relative;
   width: 100%;
   max-height: ${({ maxHeight }) => maxHeight ? `${maxHeight}px` : 'none' };
+  overflow: hidden;
   &:before {
     content: "";
     display: block;
