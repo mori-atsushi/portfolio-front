@@ -1,9 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import facebookIcon from '../assets/icons/facebook.svg'
-import githubIcon from '../assets/icons/github.svg'
-import instagramIcon from '../assets/icons/instagram.svg'
-import xIcon from '../assets/icons/x.svg'
+import facebookIcon from '../assets/icons/facebook.svg?raw'
+import githubIcon from '../assets/icons/github.svg?raw'
+import instagramIcon from '../assets/icons/instagram.svg?raw'
+import xIcon from '../assets/icons/x.svg?raw'
 const today = new Date();
 ---
 
@@ -11,16 +10,16 @@ const today = new Date();
 	&copy; {today.getFullYear()} Mori Atsushi. All rights reserved.
 	<div class="social-links">
 		<a href="https://twitter.com/at_sushi_at" target="_blank">
-			<Image src={xIcon} alt="X (Twitter)" width="32" height="32" />
+			<div set:html={xIcon} />
 		</a>
 		<a href="https://facebook.com/tb.atsushi" target="_blank">
-			<Image src={facebookIcon} alt="Facebook" width="32" height="32" />
+			<div set:html={facebookIcon} />
 		</a>
 		<a href="https://instagram.com/tb.atsushi" target="_blank">
-			<Image src={instagramIcon} alt="Instagram" width="32" height="32" />
+			<div set:html={instagramIcon} />
 		</a>
 		<a href="https://github.com/Mori-Atsushi" target="_blank">
-			<Image src={githubIcon} alt="GitHub" width="32" height="32" />
+			<div set:html={githubIcon} />
 		</a>
 	</div>
 </footer>
@@ -46,12 +45,14 @@ const today = new Date();
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-	}
-	.social-links img {
-		color: rgb(var(--black));
 		transition: opacity 0.3s ease;
 	}
-	.social-links a:hover img {
+	.social-links a:hover {
 		opacity: 0.6;
+	}
+	.social-links :global(svg) {
+		width: 32px;
+		height: 32px;
+		color: rgb(var(--black));
 	}
 </style>
