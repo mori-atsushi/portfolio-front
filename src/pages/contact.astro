@@ -1,0 +1,218 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={`${SITE_TITLE} | Contact`} description="お問い合わせページ" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="content-container">
+				<h1>Contact</h1>
+				<div class="message">
+					このサイト内の内容に関するお問い合わせ、お仕事の依頼等、お気軽にお問い合わせください。
+				</div>
+				
+				<form id="contactForm" class="contact-form">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="name">名前</label>
+							<input type="text" id="name" name="name" required />
+						</div>
+						<div class="form-group">
+							<label for="email">メールアドレス</label>
+							<input type="email" id="email" name="email" required />
+						</div>
+					</div>
+					<div class="form-group wide">
+						<label for="message">内容</label>
+						<textarea id="message" name="message" rows="6" required></textarea>
+					</div>
+					<div class="submit-container">
+						<button type="submit" class="submit-btn">送信</button>
+					</div>
+					<div id="errorMessage" class="message-display"></div>
+				</form>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+import { sendContactForm } from '../api/contact-client';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const errorMessage = document.getElementById('errorMessage') as HTMLElement;
+    
+    if (!form || !errorMessage) return;
+    
+    form.addEventListener('submit', async function(e: Event) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name') as string | null,
+            email: formData.get('email') as string | null,
+            message: formData.get('message') as string | null
+        };
+        
+        if (!data.name || !data.email || !data.message) {
+            showMessage('すべてのフォームを埋めてください。', 'error');
+            return;
+        }
+        
+        try {
+            await sendContactForm(data);
+            showMessage('お問い合わせを送信しました。ありがとうございます。', 'success');
+            form.reset();
+        } catch (error) {
+            showMessage('予期せぬエラーが発生しました。しばらくしてからもう一度お試しください。', 'error');
+        }
+    });
+    
+    function showMessage(message: string, type: string): void {
+        if (!errorMessage) return;
+        errorMessage.textContent = message;
+        errorMessage.className = `message-display ${type}`;
+        setTimeout(() => {
+            if (!errorMessage) return;
+            errorMessage.textContent = '';
+            errorMessage.className = 'message-display';
+        }, 5000);
+    }
+});
+</script>
+
+<style>
+main {
+	width: 1200px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 2rem 1em;
+}
+
+.content-container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-size: 2.5em;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid var(--accent);
+}
+
+.message {
+	margin-bottom: 3rem;
+	line-height: 1.6;
+	color: var(--gray-dark);
+}
+
+.contact-form {
+	margin-top: 3rem;
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 2rem 1rem;
+	margin-bottom: 2rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group.wide {
+	margin: 2rem 0;
+}
+
+.form-group label {
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+	color: var(--gray-dark);
+}
+
+.form-group input,
+.form-group textarea {
+	padding: 0.75rem;
+	border: 1px solid #d0d0d0;
+	border-radius: 4px;
+	font-size: 1rem;
+	transition: border-color 0.3s ease;
+	background: white;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	outline: none;
+	border-color: var(--accent);
+}
+
+.submit-container {
+	display: flex;
+	justify-content: center;
+	margin: 2rem 0;
+}
+
+.submit-btn {
+	background: var(--accent);
+	color: white;
+	border: none;
+	padding: 0.75rem 2rem;
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+	background: var(--accent-dark);
+}
+
+.message-display {
+	text-align: center;
+	margin-top: 1rem;
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.message-display.success {
+	background: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.message-display.error {
+	background: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 860px) {
+	.form-row {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+	
+	main {
+		padding: 1rem;
+	}
+	
+	h1 {
+		font-size: 2em;
+	}
+}
+</style>
