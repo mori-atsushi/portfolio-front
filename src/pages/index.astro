@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import profile from '../assets/profile.jpg'
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -16,7 +18,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<div class="content-container">
 				<div class="left-pane">
 					<div class="profile-image">
-						<img src="/profile.jpg" alt="Mori Atsushi Profile" />
+						<Image src={profile} alt="Mori Atsushi Profile" />
 					</div>
 					<div class="hero-text">
 						<h1>Mori Atsushi</h1>

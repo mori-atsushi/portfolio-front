@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import facebookIcon from '../assets/icons/facebook.svg'
+import githubIcon from '../assets/icons/github.svg'
+import instagramIcon from '../assets/icons/instagram.svg'
+import xIcon from '../assets/icons/x.svg'
 const today = new Date();
 ---
 
@@ -6,16 +11,16 @@ const today = new Date();
 	&copy; {today.getFullYear()} Mori Atsushi. All rights reserved.
 	<div class="social-links">
 		<a href="https://twitter.com/at_sushi_at" target="_blank">
-			<img src="/x.svg" alt="X (Twitter)" width="32" height="32" />
+			<Image src={xIcon} alt="X (Twitter)" width="32" height="32" />
 		</a>
 		<a href="https://facebook.com/tb.atsushi" target="_blank">
-			<img src="/facebook.svg" alt="Facebook" width="32" height="32" />
+			<Image src={facebookIcon} alt="Facebook" width="32" height="32" />
 		</a>
 		<a href="https://instagram.com/tb.atsushi" target="_blank">
-			<img src="/instagram.svg" alt="Instagram" width="32" height="32" />
+			<Image src={instagramIcon} alt="Instagram" width="32" height="32" />
 		</a>
 		<a href="https://github.com/Mori-Atsushi" target="_blank">
-			<img src="/github.svg" alt="GitHub" width="32" height="32" />
+			<Image src={githubIcon} alt="GitHub" width="32" height="32" />
 		</a>
 	</div>
 </footer>
