@@ -6,44 +6,167 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="content-container">
+				<div class="left-pane">
+					<div class="profile-image">
+						<img src="/profile.jpg" alt="Mori Atsushi Profile" />
+					</div>
+					<div class="hero-text">
+						<h1>Mori Atsushi</h1>
+						<h2>森 篤史</h2>
+						<p class="description">
+							はじめまして。写真が好きなソフトウェアエンジニアです。Android・iOS・Web等の開発を中心に行っています。
+						</p>
+					</div>
+				</div>
+
+				<div class="right-pane">
+					<section class="profile">
+						<h2>Profile</h2>
+						<dl class="career">
+							<dt>1996</dt>
+							<dd>山口県生まれ</dd>
+							<dt>2012</dt>
+							<dd>明石高専 電気情報工学科 入学</dd>
+							<dt>2015</dt>
+							<dd>知的情報環境（新井イスマイル）研究室</dd>
+							<dt>2017</dt>
+							<dd>
+								筑波大学 情報学群 情報メディア創成学類 編入学<br>
+								<a href="https://digitalnature.slis.tsukuba.ac.jp/" target="_blank" rel="noreferrer">デジタルネイチャー（落合陽一）研究室</a>
+							</dd>
+							<dt>2019</dt>
+							<dd>
+								<a href="https://www.cyberagent.co.jp/" target="_blank" rel="noreferrer">株式会社サイバーエージェント</a><br>
+								<a href="https://cyber-z.co.jp/" target="_blank" rel="noreferrer">株式会社 CyberZ</a> ソフトウェエンジニア<br>
+								2019年度 <a href="https://www.ipa.go.jp/jinzai/mitou/2019/20190607.html" target="_blank" rel="noreferrer">未踏IT人材発掘・育成事業</a> スーパークリエータ 認定
+							</dd>
+							<dt>2023</dt>
+							<dd>
+								<a href="https://www.lycorp.co.jp/" target="_blank" rel="noreferrer">LINEヤフー株式会社</a>（旧LINE株式会社） ソフトウェアエンジニア<br>
+							</dd>
+							<dt>2025</dt>
+							<dd>
+								<a href="https://book.mynavi.jp/ec/products/detail/id=147381" target="_blank" rel="noreferrer">『良いコードの道しるべ』</a>（マイナビ出版）著
+							</dd>
+						</dl>
+					</section>
+				</div>
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+main {
+	width: 1200px;
+	max-width: calc(100% - 2em);
+}
+
+.content-container {
+	display: flex;
+	gap: 4rem;
+	align-items: flex-start;
+}
+
+.left-pane {
+	flex: 0 0 340px;
+	text-align: center;
+	position: sticky;
+	top: 2rem;
+}
+
+.right-pane {
+	flex: 1;
+	min-width: 0;
+}
+
+.profile-image {
+	margin-bottom: 2em;
+}
+
+.profile-image img {
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.hero-text h1 {
+	font-size: 2.5em;
+}
+
+.hero-text h2 {
+	font-size: 1.3em;
+	font-weight: 400;
+	letter-spacing: 0.1em;
+}
+
+.hero-text .description {
+	font-size: 1em;
+	line-height: 1.6;
+	text-align: left;
+}
+
+.profile h2 {
+	border-bottom: 2px solid var(--accent);
+	padding-bottom: 0.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.career {
+	margin: 2rem 0;
+}
+
+.career dt {
+	font-weight: 700;
+	font-size: 1.1em;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+	padding-left: 0;
+}
+
+.career dt:first-child {
+	margin-top: 0;
+}
+
+.career dd {
+	margin-left: 0;
+	margin-bottom: 0;
+	position: relative;
+	line-height: 1.8;
+}
+
+@media (max-width: 860px) {
+	.content-container {
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.left-pane {
+		flex: none;
+		position: static;
+	}
+
+	.right-pane {
+		width: 100%;
+	}
+
+	.profile-image img {
+		width: 200px;
+		height: 200px;
+	}
+
+	.hero-text .description {
+		text-align: center;
+	}
+}
+</style>
