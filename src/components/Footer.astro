@@ -5,10 +5,18 @@ const today = new Date();
 <footer>
 	&copy; {today.getFullYear()} Mori Atsushi. All rights reserved.
 	<div class="social-links">
-		<a href="https://twitter.com/at_sushi_at" target="_blank">Twitter</a>
-		<a href="https://facebook.com/tb.atsushi" target="_blank">Facebook</a>
-		<a href="https://instagram.com/tb.atsushi" target="_blank">Instagram</a>
-		<a href="https://github.com/Mori-Atsushi" target="_blank">GitHub</a>
+		<a href="https://twitter.com/at_sushi_at" target="_blank">
+			<img src="/x.svg" alt="X (Twitter)" width="32" height="32" />
+		</a>
+		<a href="https://facebook.com/tb.atsushi" target="_blank">
+			<img src="/facebook.svg" alt="Facebook" width="32" height="32" />
+		</a>
+		<a href="https://instagram.com/tb.atsushi" target="_blank">
+			<img src="/instagram.svg" alt="Instagram" width="32" height="32" />
+		</a>
+		<a href="https://github.com/Mori-Atsushi" target="_blank">
+			<img src="/github.svg" alt="GitHub" width="32" height="32" />
+		</a>
 	</div>
 </footer>
 <style>
@@ -28,13 +36,17 @@ const today = new Date();
 		color: var(--accent);
 		text-decoration: none;
 		font-weight: 500;
-		padding: 0.5rem 1rem;
-		border: 1px solid var(--accent);
-		border-radius: 4px;
+		padding: 0.5rem;
 		transition: all 0.3s ease;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
-	.social-links a:hover {
-		background-color: var(--accent);
-		color: white;
+	.social-links img {
+		color: rgb(var(--black));
+		transition: opacity 0.3s ease;
+	}
+	.social-links a:hover img {
+		opacity: 0.6;
 	}
 </style>
