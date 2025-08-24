@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { posts, currentPage, totalPages } = Astro.props;
-const pageTitle = currentPage ? `Blog(${currentPage})` : 'Blog';
+const pageTitle = currentPage && currentPage > 1 ? `Blog(${currentPage})` : 'Blog';
 ---
 
 <!doctype html>
