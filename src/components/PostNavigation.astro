@@ -112,5 +112,9 @@ const { nextPost, prevPost } = Astro.props;
 	.nav-item a {
 		max-width: none;
 	}
+
+	.nav-container:has(.nav-older:only-child) .nav-older {
+		grid-column: 1;
+	}
 }
 </style>
