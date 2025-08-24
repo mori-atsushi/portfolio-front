@@ -9,6 +9,9 @@ export default defineConfig({
 	site: 'https://example.com',
 	integrations: [mdx(), sitemap()],
 	markdown: {
+		remarkPlugins: [
+			['remark-external-links', { target: '_blank', rel: 'noopener noreferrer' }]
+		],
 		shikiConfig: {
 			theme: "github-light",
 		},
