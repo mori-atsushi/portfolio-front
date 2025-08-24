@@ -16,4 +16,7 @@ export default defineConfig({
 			theme: "github-light",
 		},
 	},
+	prefetch: {
+    	prefetchAll: true
+  	},
 });
