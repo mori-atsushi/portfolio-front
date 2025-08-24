@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import FormattedDate from './FormattedDate.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION } from '../consts';
 
 interface Props {
 	posts: any[];
@@ -9,50 +13,63 @@ interface Props {
 }
 
 const { posts, currentPage, totalPages } = Astro.props;
+const pageTitle = currentPage ? `Blog(${currentPage})` : 'Blog';
 ---
 
-<section>
-	<ul>
-		{
-			posts.map((post) => (
-				<li>
-					<div class="content">
-						<p class="date">
-							<FormattedDate date={post.data.pubDate} />
-						</p>
-						<a href={`/blog/${post.id}/`}>
-							<h4 class="title">{post.data.title}</h4>
-						</a>
-						{post.data.description && (
-							<p class="description" set:html={post.data.description.replace(/\\n/g, '<br>')}></p>
-						)}
-						<a href={`/blog/${post.id}/`} class="read-more-btn">続きを読む</a>
-					</div>
-					<a href={`/blog/${post.id}/`} class="image-wrapper">
-						<Image width={720} height={360} src={post.data.ogpImage} alt="" />
-					</a>
-				</li>
-			))
-		}
-	</ul>
-</section>
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={pageTitle} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<div class="content">
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									<a href={`/blog/${post.id}/`}>
+										<h4 class="title">{post.data.title}</h4>
+									</a>
+									{post.data.description && (
+										<p class="description" set:html={post.data.description.replace(/\\n/g, '<br>')}/>
+									)}
+									<a href={`/blog/${post.id}/`} class="read-more-btn">続きを読む</a>
+								</div>
+								<a href={`/blog/${post.id}/`} class="image-wrapper">
+									<Image width={720} height={360} src={post.data.ogpImage} alt="" />
+								</a>
+							</li>
+						))
+					}
+				</ul>
 
-{totalPages && totalPages > 1 && (
-	<nav class="pagination">
-		{Array.from({ length: totalPages }).map((_, i) => {
-			const page = i + 1;
-			const href = page === 1 ? '/blog' : `/blog/page/${page}`;
-			return (
-				<a 
-					href={href}
-					class={`pagination-item ${page === currentPage ? 'current' : ''}`}
-				>
-					{page}
-				</a>
-			);
-		})}
-	</nav>
-)}
+				{totalPages && totalPages > 1 && (
+					<nav class="pagination">
+						{Array.from({ length: totalPages }).map((_, i) => {
+							const page = i + 1;
+							const href = page === 1 ? '/blog' : `/blog/page/${page}`;
+							return (
+								<a 
+									href={href}
+									class={`pagination-item ${page === currentPage ? 'current' : ''}`}
+								>
+									{page}
+								</a>
+							);
+						})}
+					</nav>
+				)}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
 
 <style>
 ul {
