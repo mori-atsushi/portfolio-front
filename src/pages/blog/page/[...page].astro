@@ -1,0 +1,30 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import BlogList from '../../../components/BlogList.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { getSortedBlogPosts, BLOG_PAGE_SIZE } from '../../../api/blog';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+	const allPosts = await getSortedBlogPosts();
+	return paginate(allPosts, { pageSize: BLOG_PAGE_SIZE });
+}
+
+const { data: posts, currentPage, lastPage } = Astro.props.page as Page;
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<BlogList posts={posts} currentPage={currentPage} totalPages={lastPage} />
+		</main>
+		<Footer />
+	</body>
+</html>

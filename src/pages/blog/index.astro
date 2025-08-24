@@ -1,15 +1,16 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import BlogList from '../../components/BlogList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getSortedBlogPosts, BLOG_PAGE_SIZE } from '../../api/blog';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const allPosts = await getSortedBlogPosts();
+const currentPage = 1;
+const totalPages = Math.ceil(allPosts.length / BLOG_PAGE_SIZE);
+const startIndex = (currentPage - 1) * BLOG_PAGE_SIZE;
+const posts = allPosts.slice(startIndex, startIndex + BLOG_PAGE_SIZE);
 ---
 
 <!doctype html>
@@ -20,123 +21,8 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<div class="content">
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-									<a href={`/blog/${post.id}/`}>
-										<h4 class="title">{post.data.title}</h4>
-									</a>
-									{post.data.description && (
-										<p class="description" set:html={post.data.description.replace(/\\n/g, '<br>')}></p>
-									)}
-									<a href={`/blog/${post.id}/`} class="read-more-btn">続きを読む</a>
-								</div>
-								<a href={`/blog/${post.id}/`} class="image-wrapper">
-									<Image width={720} height={360} src={post.data.ogpImage} alt="" />
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+			<BlogList posts={posts} currentPage={currentPage} totalPages={totalPages} />
 		</main>
 		<Footer />
 	</body>
 </html>
-
-<style>
-ul {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-ul li {
-	display: flex;
-	align-items: flex-start;
-	gap: 1rem;
-}
-ul li * {
-	text-decoration: none;
-	transition: 0.2s ease;
-}
-.content {
-	flex: 1;
-	min-width: 0%;
-}
-.image-wrapper {
-	width: 30%;
-	min-width: 120px;
-	transition: box-shadow 0.3s cubic-bezier(0.25,0.8,0.25,1);
-	border-radius: 12px;
-	overflow: hidden;
-}
-.image-wrapper:hover {
-	box-shadow: var(--box-shadow);
-}
-ul li img {
-	display: block;
-	width: 100%;
-	height: auto;
-	border-radius: 12px;
-}
-.title {
-	font-size: 2rem;
-	font-weight: bold;
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 3rem;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-}
-.title:hover {
-	opacity: 0.7;
-}
-.date {
-	margin: 0;
-	color: rgb(var(--gray));
-	line-height: 1.5rem;
-	font-size: 1.1rem;
-}
-.description {
-	line-height: 1.8rem;
-	margin: 0 0 1rem 0;
-	font-size: 1.2rem;
-}
-.read-more-btn {
-	background: var(--accent);
-	color: white;
-	border: none;
-	padding: 0.75rem 1.2rem;
-	border-radius: 4px;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	text-decoration: none;
-	display: inline-block;
-	margin-bottom: 1rem;
-}
-.read-more-btn:hover {
-	background: var(--accent-dark);
-}
-@media (max-width: 720px) {
-	ul li {
-		flex-direction: column-reverse;
-	}
-	.image-wrapper {
-		width: 100%;
-	}
-	.title {
-		font-size: 1.563rem;
-		line-height: 2rem;
-	}
-}
-</style>
