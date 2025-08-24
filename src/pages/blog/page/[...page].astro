@@ -1,0 +1,14 @@
+---
+import BlogList from '../../../layouts/BlogList.astro';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { getSortedBlogPosts, BLOG_PAGE_SIZE } from '../../../api/blog';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+	const allPosts = await getSortedBlogPosts();
+	return paginate(allPosts, { pageSize: BLOG_PAGE_SIZE });
+}
+
+const { data: posts, currentPage, lastPage } = Astro.props.page as Page;
+---
+
+<BlogList posts={posts} currentPage={currentPage} totalPages={lastPage} />
