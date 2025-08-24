@@ -3,7 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import BlogList from '../../components/BlogList.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_DESCRIPTION } from '../../consts';
 import { getSortedBlogPosts, BLOG_PAGE_SIZE } from '../../api/blog';
 
 const allPosts = await getSortedBlogPosts();
@@ -16,7 +16,7 @@ const posts = allPosts.slice(startIndex, startIndex + BLOG_PAGE_SIZE);
 <!doctype html>
 <html lang="ja">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title='Blog' description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
