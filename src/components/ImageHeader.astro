@@ -16,7 +16,6 @@ const { title, backgroundImage } = Astro.props;
 	position: relative;
 	width: 100%;
 	height: 300px;
-	max-height: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,6 +23,22 @@ const { title, backgroundImage } = Astro.props;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+@media (max-width: 720px) {
+	.page-header {
+		height: 0;
+		padding-bottom: 45%;
+		position: relative;
+	}
+	
+	.page-title {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0;
+	}
 }
 
 .page-title {
