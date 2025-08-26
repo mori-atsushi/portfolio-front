@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
 	title: string;
 	backgroundImage: ImageMetadata;
@@ -9,8 +7,7 @@ interface Props {
 const { title, backgroundImage } = Astro.props;
 ---
 
-<div class="page-header">
-	<Image src={backgroundImage} alt="" class="background-image" />
+<div class="page-header" style={`background-image: url(${backgroundImage.src})`}>
 	<h1 class="page-title">{title}</h1>
 </div>
 
@@ -24,16 +21,9 @@ const { title, backgroundImage } = Astro.props;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-}
-
-.background-image {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	z-index: -1;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .page-title {
